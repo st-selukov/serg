@@ -26,6 +26,17 @@ module Serg
     # -- all .rb files in that directory are automatically loaded.
 
     # Don't generate system test files.
+    config.generators do |g|
+      g.test_framework :rspec,
+                       fixture: true,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false,
+                       request_specs: false,
+                       controller_specs: true
+
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+    end
     config.generators.system_tests = nil
   end
 end
