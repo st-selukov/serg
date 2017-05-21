@@ -50,9 +50,10 @@ group :development do
 end
 
 group :test do
+  gem 'factory_girl_rails'
+  gem 'fuubar'
   gem 'rspec-rails'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
-  gem 'factory_girl_rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
