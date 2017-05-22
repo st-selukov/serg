@@ -1,0 +1,19 @@
+section.question-show.container
+  .question-answers-wrapper
+    article.single-question
+      h2.single-question-title
+        |#{@question.title}
+      .single-question-body
+        .single-question-body__desc
+          p
+            |#{@question.body}
+    article.single-question-answers
+      -@answers.each_with_index do |answer, index|
+        .answer-wrapper
+          h2.answers.title
+            | Ответ #{index+1}
+          .answer-body
+            p
+              |#{answer.body}
+    .add-answer-wrapper
+      =render 'answers/form'
