@@ -1,0 +1,11 @@
+= form_for @question, class: "ask-question-form" do |f|
+  .ask-question-form-inputs
+    = f.label 'Заголовок вопроса'
+    = f.text_field :title
+  .ask-question-form-desc
+    = f.label 'Описание вопроса'
+    = f.text_area :body
+  .ask-question-form-subm
+    = f.button 'Разместить вопрос на сайте'
+
+

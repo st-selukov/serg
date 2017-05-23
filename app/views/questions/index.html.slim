@@ -1,0 +1,20 @@
+section.list-questions.container
+  .ask-wrapper
+    =link_to new_question_path, class: 'ask-button'
+      | Задать вопрос
+  h1.list-questions-title
+    |Список вопросов
+  .questions-wrapper
+    -@questions.each do |question|
+      article.question
+        h2.question-title
+         =link_to question, class: 'question-title-link'
+            | #{question.title}
+        .question-body
+          p.question-body-desc
+            | #{question.body}
+          span.question-answers-count
+            =link_to question
+              i.material-icons.md-18
+                |comment
+              |#{question.answers.count} Ответов
