@@ -1,19 +1,26 @@
-section.question-show.container
-  .question-answers-wrapper
+section.single-question-show.container
+  .single-question-and-his-answers
     article.single-question
+      .single-question__user-avatar
+        = link_to
+          = image_tag('default-avatar.png')
       h2.single-question-title
         |#{@question.title}
       .single-question-body
-        .single-question-body__desc
-          p
-            |#{@question.body}
-    article.single-question-answers
-      -@answers.each_with_index do |answer, index|
-        .answer-wrapper
-          h2.answers.title
+        p
+          |#{@question.body}
+    .single-question-answers__all-answers
+      h2.single-question-answers__all-answers-title
+        | Ответы  на вопрос
+      - @answers.each_with_index do |answer, index|
+        article.single-question-answers__current_answer
+          .single-question__user-avatar
+            = link_to
+              = image_tag('default-avatar.png')
+          h2.single-question-answers__current-answer-title
             | Ответ #{index+1}
-          .answer-body
+          .single-question-answers__current-answer-body
             p
               |#{answer.body}
-    .add-answer-wrapper
-      =render 'answers/form'
+    .single-question-answers__add-answer-for-question
+      = render 'answers/form'

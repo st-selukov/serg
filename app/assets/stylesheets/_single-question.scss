@@ -1,0 +1,130 @@
+@import "questions";
+
+.single-question-show {
+  background: rgb(243, 243, 243);
+}
+
+.single-question-and-his-answers, .ask-question-wrapper {
+  @include span(8 of 12);
+  @include display-flex();
+  @include flex-direction(column);
+}
+
+.single-question, .single-question-answers__current_answer {
+  width: 100%;
+  margin: 100px 0;
+  padding: 30px 30px 20px 150px;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+}
+
+.single-question__user-avatar {
+  position: absolute;
+  left: 20px;
+  top: 30px;
+
+  & img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.single-question-title, .single-question-answers__all-answers-title, .ask-question-title {
+  font-weight: 600;
+  font-size: 28px;
+}
+
+.single-question-body p, .single-question-answers__current-answer-body p {
+  font-size: 13px;
+  color: #848991;
+  padding: 30px 0;
+  line-height: 22px;
+  border-bottom: 1px solid rgb(222, 222, 222);
+  margin-bottom: 20px;
+}
+
+.single-question-answers__all-answers {
+  @include display-flex();
+  @include flex-direction(column);
+}
+
+.single-question-answers__current_answer {
+  margin: 10px 0;
+
+  & .single-question__user-avatar {
+    top: 30px;
+    bottom: 0;
+  }
+}
+
+.single-question-answers__all-answers-title {
+  margin-bottom: 20px
+}
+
+.single-question-answers__add-answer-for-question {
+  margin-top: 100px;
+}
+
+.add-answer-form {
+  width: 100%;
+}
+
+.answer-desk {
+  @include display-flex();
+  @include flex-direction(column);
+
+  & textarea {
+    margin-top: 20px;
+    width: 100%;
+    height: 200px;
+    resize: none;
+  }
+}
+
+.add-answer-form-subm, .ask-question-form-subm {
+  padding: 30px 0;
+
+  & button {
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 500;
+    padding: 10px 0;
+    background-color: rgb(255, 115, 97);
+
+    &:hover {
+      color: rgb(255, 255, 255);
+    }
+  }
+}
+
+.ask-question-wrapper {
+  padding-top: 100px;
+}
+
+.ask-question-title {
+  margin-bottom: 50px;
+}
+
+.ask-question-form, .ask-question-form-inputs, .ask-question-form-desc {
+  @include display-flex();
+  @include flex-direction(column);
+}
+
+.ask-question-form-inputs {
+  margin-bottom: 50px;
+
+  & label {
+    margin-bottom: 20px;
+  }
+}
+
+.ask-question-form-desc {
+
+  & textarea {
+    margin-top: 20px;
+    width: 100%;
+    height: 200px;
+    resize: none;
+  }
+}

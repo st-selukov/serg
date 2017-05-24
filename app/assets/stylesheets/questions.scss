@@ -1,170 +1,84 @@
-// Place all the styles related to the questions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-@import 'susy';
-@import 'compass';
-.container {
-    @include container(1170px);
-    background-color: #f3f3f3;
+@import "header";
+
+.all-questions {
+  background: rgb(243, 243, 243);
 }
 
-.list-questions-title {
-    @include span(8 of 12);
-    margin: 0 0 50px 20px;
-    padding-top: 50px;
-    font-weight: 600;
-    font-size: 28px;
+.all-questions-title {
+  @include span(8 of 12);
+  margin: 0 0 50px 0;
+  padding-top: 50px;
+  font-weight: 600;
+  font-size: 28px;
 }
 
-.questions-wrapper {
-    @include span(8 of 12);
+.articles-all-questions-wrapper {
+  @include span(8 of 12);
 }
 
-article.question,
-.single-question,
-.answer-wrapper {
-    width: 100%;
-    padding: 20px;
-    background-color: rgb(255, 255, 255);
-    margin: 0 0 20px 20px;
-    border: 1px solid rgb(222, 222, 222);
+.all-questions_current-question {
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  padding: 0 30px 20px 150px;
+  margin-bottom: 30px;
+  position: relative;
 }
 
-.question-title {
-    margin: 0 0 30px 100px;
-    & a {
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 26px;
-        color: rgba(0, 0, 0, 1.0);
-        &:hover {
-            color: rgb(255, 115, 97);
-        }
-    }
+.all-questions_current-question__user-avatar {
+  position: absolute;
+  left: 20px;
+  top: 30px;
+
+  & img {
+    width: 100px;
+    height: 100px;
+  }
 }
 
-.question-body {
-    margin-left: 100px;
-    & p {
-        font-size: 13px;
-        color: #848991;
-        padding-bottom: 30px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-height: 22px;
-        border-bottom: 1px solid rgb(222, 222, 222);
-        margin-bottom: 20px;
-    }
-}
+.all-questions__current-question-title {
+  padding: 30px 0;
 
-.question-answers-count {
-    display: inline-block;
-    & a {
-        text-decoration: none;
-        font-size: 13px;
-        line-height: 18px;
-        vertical-align: top;
-        color: #848991;
-        &:hover {
-            color: rgb(255, 115, 97);
-        }
-        & i {
-            margin-right: 5px;
-        }
-    }
-}
-
-.question-answers-wrapper,
-.ask-question-wrapper {
-    @include span(8 of 12);
-    padding-top: 50px;
-}
-
-.single-question-title,
-.answers.title,
-.ask-question-title {
+  & a {
+    text-decoration: none;
     font-weight: 600;
     font-size: 26px;
     color: rgba(0, 0, 0, 1.0);
     &:hover {
-        color: rgb(255, 115, 97);
+      color: rgb(255, 115, 97);
     }
+  }
 }
 
-.single-question-body,
-.answer-body {
-    padding: 50px 0;
+.all-questions__current-question-body {
+
+  & p {
     font-size: 13px;
     color: #848991;
     padding-bottom: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     line-height: 22px;
     border-bottom: 1px solid rgb(222, 222, 222);
     margin-bottom: 20px;
+  }
 }
 
-.ask-wrapper {
-    @include span(8 of 12);
-}
+.all-questions__current-question-answers-count {
+  display: inline-block;
 
-.ask-button {
-    background-color: rgb(255, 115, 97);
-    padding: 15px;
-    text-align: center;
-    display: inline-block;
+  & a {
     text-decoration: none;
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-    margin: 50px 0 0 20px;
+    font-size: 13px;
+    line-height: 18px;
+    vertical-align: top;
+    color: #848991;
+
     &:hover {
-        background-color: rgba(0, 0, 0, 0.7);
+      color: rgb(255, 115, 97);
     }
-}
 
-.ask-question-wrapper,
-.add-answer-wrapper {
-    padding-left: 30px
-}
-
-.new_question,
-.add-answer-form {
-    @include display-flex;
-    @include flex-direction(column);
-    padding-top: 25px;
-}
-
-.ask-question-form-inputs label,
-.ask-question-form-desc label,
-.answer-desk label {
-    display: block;
-    font-size: 20px;
-    color: rgb(255, 115, 97);
-    padding: 20px 0;
-}
-
-.ask-question-form-inputs input {
-    width: 85%;
-}
-
-.ask-question-form-desc textarea,
-.answer-desk textarea {
-    width: 85%;
-    height: 200px;
-    resize: none;
-}
-
-.ask-question-form-subm.add-answer-form-subm {
-    padding: 15px 0;
-}
-
-.ask-question-form-subm button,
-.add-answer-form-subm button {
-    width: 85%;
-    padding: 15px 0;
-    background-color: rgb(255, 115, 97);
-    cursor: pointer;
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.7);
-        color: rgb(255, 255, 255);
+    & i {
+      margin-right: 5px;
     }
+  }
 }
