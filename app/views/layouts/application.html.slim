@@ -12,14 +12,14 @@ html
         section.container.menu-sec
           div.site-logo
             = link_to root_url
-              | SERG QUESTIONS
+              | QUESTIONS
           nav.top-site-nav
             ul
               li.current-nav-page
-                = link_to
+                = link_to new_question_path
                   | Задать вопрос
               li.current-nav-page
-                = link_to
+                = link_to questions_path
                   | Все вопросы
               li.current-nav-page
                 = link_to

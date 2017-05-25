@@ -89,8 +89,11 @@
     cursor: pointer;
     text-align: center;
     font-weight: 500;
+    font-size: 18px;
+    text-transform: uppercase;
     padding: 10px 0;
     background-color: rgb(255, 115, 97);
+    border-radius: 2px;
 
     &:hover {
       color: rgb(255, 255, 255);
@@ -111,6 +114,14 @@
   @include flex-direction(column);
 }
 
+input[type="text"] , textarea {
+  padding: 10px;
+  border-radius: 1px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+  font-size: 18px;
+}
+
 .ask-question-form-inputs {
   margin-bottom: 50px;
 
@@ -128,3 +139,4 @@
     resize: none;
   }
 }
+

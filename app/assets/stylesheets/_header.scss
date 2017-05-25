@@ -19,18 +19,21 @@
 }
 
 .site-logo {
-  @include span(4 of 12);
+  @include span(3 of 12);
 
   & a {
-    font-size: 36px;
-    font-weight: 600;
+    font-family: "Lilita One", cursive;
+    font-size: 40px;
+    font-weight: 500;
     color: #ff7361;
     text-decoration: none;
+    letter-spacing: 3px;
   }
 }
 
 .top-site-nav {
-  @include span(7 of 12);
+  display: inline-block;
+  float: right;
 
   & ul {
     width: 100%;
@@ -56,6 +59,10 @@
     font-weight: 500;
     font-size: 18px;
   }
+}
+
+.current-nav-page:nth-child(3) {
+  margin-right: 0;
 }
 
 .ask-question-main {
