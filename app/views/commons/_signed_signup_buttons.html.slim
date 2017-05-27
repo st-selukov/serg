@@ -1,0 +1,12 @@
+asside.user-sing-in-up-asside
+  -if current_user
+    .users-button-group
+      = link_to destroy_user_session_path, method: :delete
+        | Выйти
+  - else
+    .users-button-group
+      = link_to new_user_registration_path
+        | Регистрация
+      = link_to new_user_session_path
+        | Войти на сайт
+  = render 'layouts/messages'

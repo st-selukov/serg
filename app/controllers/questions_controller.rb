@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :load_question, only: [:show]
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :load_question, only: [:show, :destroy]
 
   def index
     @questions = Question.all
@@ -15,11 +16,20 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(question_params)
+    @question = current_user.questions.new(question_params)
     if @question.save
       redirect_to questions_path
     else
       render :new
+    end
+  end
+
+  def destroy
+    if @question.user == current_user
+      @question.destroy
+      redirect_to questions_path
+    else
+      redirect_to root_url
     end
   end
 

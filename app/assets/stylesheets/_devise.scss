@@ -1,0 +1,11 @@
+@import "header";
+
+.sign-up-in-cont {
+    @include display-flex();
+}
+
+.sign-up-in_form {
+  @include display-flex();
+  @include flex-direction(column);
+  margin: 100px auto;
+}

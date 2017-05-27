@@ -9,6 +9,12 @@ section.single-question-show.container
       .single-question-body
         p
           |#{@question.body}
+      -if user_signed_in? && @question.user == current_user
+        span.all-questions__current-question-answers-destroy
+          = link_to @question, method: :delete
+            i.material-icons.md-18
+              |delete
+            | Удалить вопрос
     .single-question-answers__all-answers
       h2.single-question-answers__all-answers-title
         | Ответы  на вопрос
@@ -22,5 +28,12 @@ section.single-question-show.container
           .single-question-answers__current-answer-body
             p
               |#{answer.body}
+          -if user_signed_in? && answer.user == current_user
+            span.all-questions__current-question-answers-destroy
+              = link_to answer, method: :delete
+                i.material-icons.md-18
+                  |delete
+                | Удалить ответ
     .single-question-answers__add-answer-for-question
-      = render 'answers/form'
+      -if user_signed_in?
+        = render 'answers/form'
