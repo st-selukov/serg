@@ -11,8 +11,13 @@ RSpec.describe AnswersController, type: :controller do
     context ' create answer with valid attributes' do
 
       it 'create answer for question and saving in database' do
-        expect {post :create, params: {question_id: question.id, answer: attributes_for(:answer)}}
+        expect {post :create, params: { question_id: question.id, answer: attributes_for(:answer)}}
             .to change(question.answers, :count).by(1)
+      end
+
+      it 'create answer for user ' do
+        expect { post :create, params: { question_id: question.id, answer: attributes_for(:answer) } }
+            .to change(@user.answers, :count).by(1)
       end
     end
 
@@ -48,14 +53,6 @@ RSpec.describe AnswersController, type: :controller do
       it 'not destroy answer, If user is not the owner answer' do
         expect { delete :destroy, params: { id: answer } }.to_not change(Answer, :count)
       end
-
-      it 'it redirect to if answer not  destroy' do
-        delete :destroy, params: { id: answer }
-        expect(response).to redirect_to root_url
-      end
     end
   end
 end
-
-
-

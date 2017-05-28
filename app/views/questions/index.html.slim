@@ -19,11 +19,10 @@ section.all-questions.container
                 i.material-icons.md-18
                   |comment
                 |#{question.answers.count} Ответов
-            -if user_signed_in? && question.user == current_user
+            -if user_signed_in? && current_user.author_of?(question)
               span.all-questions__current-question-answers-destroy
                 = link_to question, method: :delete
                   i.material-icons.md-18
                     |delete
                   | Удалить вопрос
-
   = render 'commons/signed_signup_buttons'

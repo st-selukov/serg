@@ -2,7 +2,7 @@ require_relative '../features_helper'
 
 feature 'Create Answer', %q{User  can create answers for questions} do
 
-  given(:user) { create(:user) }
+  given!(:user) { create(:user) }
   given!(:question) { create(:question, user: user) }
 
   scenario 'authenticated user try create answer' do

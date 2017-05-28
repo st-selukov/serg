@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user!
   before_action :load_question, only: [:create]
   before_action :load_answer, only: [:destroy]
 
@@ -9,11 +10,9 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    if @answer.user == current_user
+    if current_user.author_of?(@answer)
       @answer.destroy
       redirect_to @answer.question
-    else
-      redirect_to root_url
     end
   end
 

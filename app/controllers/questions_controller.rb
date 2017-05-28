@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
   before_action :load_question, only: [:show, :destroy]
 
   def index
@@ -25,11 +25,9 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    if @question.user == current_user
+    if current_user.author_of?(@question)
       @question.destroy
       redirect_to questions_path
-    else
-      redirect_to root_url
     end
   end
 

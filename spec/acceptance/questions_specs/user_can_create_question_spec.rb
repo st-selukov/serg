@@ -18,7 +18,7 @@ feature 'Create Question', %q{
     visit questions_path
     sign_in(user)
 
-    within ('.ask-question') do
+    within('.ask-question') do
       click_on 'Задать вопрос'
     end
 
@@ -29,10 +29,27 @@ feature 'Create Question', %q{
     expect(page).to have_content 'Test Text'
   end
 
+  scenario 'authenticated user try created question with invalid question' do
+    visit questions_path
+    sign_in(user)
+
+    within('.ask-question') do
+      click_on 'Задать вопрос'
+    end
+
+    fill_in 'question[title]', with: ''
+    fill_in 'question[body]', with: ''
+    click_on 'Разместить вопрос на сайте'
+
+    expect(page).to have_content "Title can't be blank"
+    expect(page).to have_content "Title is too short (minimum is 5 characters)"
+    expect(page).to have_content "Body can't be blank"
+  end
+
   scenario 'non authenticated user try created question' do
     visit questions_path
 
-    within ('.ask-question') do
+    within('.ask-question') do
       click_on 'Задать вопрос'
     end
 

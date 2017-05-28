@@ -41,7 +41,6 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'GET #new' do
-
     sign_in_user
 
     before { get :new }
@@ -68,6 +67,11 @@ RSpec.describe QuestionsController, type: :controller do
       it 'redirect to questions#index view' do
         post :create, params: { question: attributes_for(:question)}
         expect(response).to redirect_to questions_path
+      end
+
+      it 'create question for user ' do
+        expect { post :create, params: { question: attributes_for(:question) } }
+            .to change(@user.questions, :count).by(1)
       end
     end
 
@@ -107,11 +111,6 @@ RSpec.describe QuestionsController, type: :controller do
 
       it 'not destroy question, if user is not the owner question' do
         expect { delete :destroy, params: { id: question } }.to_not change(Question, :count)
-      end
-
-      it 'redirect to if not destroy question' do
-        delete :destroy, params: { id: question }
-        expect(response).to redirect_to root_url
       end
     end
   end

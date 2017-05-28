@@ -9,7 +9,7 @@ section.single-question-show.container
       .single-question-body
         p
           |#{@question.body}
-      -if user_signed_in? && @question.user == current_user
+      -if user_signed_in? && current_user.author_of?(@question)
         span.all-questions__current-question-answers-destroy
           = link_to @question, method: :delete
             i.material-icons.md-18
@@ -28,7 +28,7 @@ section.single-question-show.container
           .single-question-answers__current-answer-body
             p
               |#{answer.body}
-          -if user_signed_in? && answer.user == current_user
+          -if user_signed_in? && current_user.author_of?(answer)
             span.all-questions__current-question-answers-destroy
               = link_to answer, method: :delete
                 i.material-icons.md-18
