@@ -16,6 +16,8 @@ class AnswersController < ApplicationController
     if current_user.author_of?(@answer)
       @answer.destroy
       redirect_to @answer.question
+    else
+      render 'questions/show'
     end
   end
 
