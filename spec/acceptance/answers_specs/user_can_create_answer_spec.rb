@@ -24,8 +24,7 @@ feature 'Create Answer', %q{User  can create answers for questions} do
     fill_in 'answer[body]', with: ''
     click_on 'Разместить ответ'
 
-    expect(page).to_not have_css '.single-question-answers__current_answer'
-    expect(current_path).to eq question_path(question)
+    expect(page).to have_content 'Необходимо заполнить поле ответа'
   end
 
   scenario 'non authenticated user  can try create answer' do

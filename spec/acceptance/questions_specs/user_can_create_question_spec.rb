@@ -41,9 +41,9 @@ feature 'Create Question', %q{
     fill_in 'question[body]', with: ''
     click_on 'Разместить вопрос на сайте'
 
-    expect(page).to have_content "Title can't be blank"
-    expect(page).to have_content "Title is too short (minimum is 5 characters)"
-    expect(page).to have_content "Body can't be blank"
+    expect(page).to have_content 'Название вопроса обязательно для заполнения'
+    expect(page).to have_content 'Название вопроса  должно быть не менее 5 символов и не более 140 символов'
+    expect(page).to have_content 'Нет описания вопроса'
   end
 
   scenario 'non authenticated user try created question' do

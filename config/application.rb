@@ -39,5 +39,6 @@ module Serg
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
     config.generators.system_tests = nil
+    config.i18n.default_locale = :ru
   end
 end

@@ -1,0 +1,31 @@
+ru:
+  activerecord:
+      errors:
+        messages:
+          record_invalid: 'Возникли ошибки: %{errors}'
+          restrict_dependent_destroy:
+            has_one: 'Невозможно удалить запись, так как существует зависимость: %{record}'
+            has_many: 'Невозможно удалить запись, так как существуют зависимости: %{record}'
+        full_messages:
+          format: "%{attribute} %{message}"
+        models:
+          question:
+            attributes:
+              title:
+                blank: "Название вопроса обязательно для заполнения"
+                too_short: "Название вопроса должно быть не менее 5 символов и не более 140 символов"
+              body:
+                blank: "Нет описания вопроса"
+          answer:
+            attributes:
+              body:
+                blank: "Необходимо заполнить поле ответа"
+          user:
+            attributes:
+              email:
+                blank: "Необходимо ввести email"
+              password:
+                blank: "Необходимо ввести пароль"
+                too_short: "Слишком короткий пароль. Минимум 8 символов"
+              password_confirmation:
+                confirmation: "Необходимо ввести подтверждение пароля"

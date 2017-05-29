@@ -1,5 +1,7 @@
 - if resource.errors.present?
   .all-form-inputs-errors
+    p
+      |Исправьте следующие ошибки и попробуйте снова:
     - resource.errors.full_messages.each do |message|
       p
-        = message
+        = message.split(' ')[1..-1].join(' ')

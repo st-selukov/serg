@@ -8,22 +8,13 @@ RSpec.describe User, type: :model do
     let(:user) { create(:user) }
     let(:user2) { create(:user) }
     let(:question) { create(:question, user_id: user.id) }
-    let(:answer) { create(:answer, question_id: question.id, user_id: user.id) }
 
     it 'should to be true' do
-      expect(user.author_of?(question)).to be true
-    end
-
-    it 'should to be true' do
-      expect(user.author_of?(answer)).to be true
+      expect(user).to be_author_of(question)
     end
 
     it 'should to be false' do
-      expect(user2.author_of?(question)).to  be false
-    end
-
-    it 'should to be false' do
-      expect(user2.author_of?(answer)).to be false
+      expect(user2).to_not be_author_of(question)
     end
   end
 end

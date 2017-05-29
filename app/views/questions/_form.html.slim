@@ -1,4 +1,5 @@
 = form_for @question, class: 'ask-question-form' do |f|
+  = render 'commons/errors', resource: @question
   .ask-question-form-inputs
     = f.label 'Заголовок вопроса'
     = f.text_field :title
@@ -7,4 +8,3 @@
     = f.text_area :body
   .ask-question-form-subm
     = f.button 'Разместить вопрос на сайте'
-  = render 'commons/errors', resource: @question

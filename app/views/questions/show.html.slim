@@ -18,22 +18,23 @@ section.single-question-show.container
     .single-question-answers__all-answers
       h2.single-question-answers__all-answers-title
         | Ответы  на вопрос
-      - @answers.each_with_index do |answer, index|
-        article.single-question-answers__current_answer
-          .single-question__user-avatar
-            = link_to
-              = image_tag('default-avatar.png')
-          h2.single-question-answers__current-answer-title
-            | Ответ #{index+1}
-          .single-question-answers__current-answer-body
-            p
-              |#{answer.body}
-          -if user_signed_in? && current_user.author_of?(answer)
-            span.all-questions__current-question-answers-destroy
-              = link_to answer, method: :delete
-                i.material-icons.md-18
-                  |delete
-                | Удалить ответ
+      - @question.answers.each_with_index do |answer, index|
+        -if answer.persisted?
+          article.single-question-answers__current_answer
+            .single-question__user-avatar
+              = link_to
+                = image_tag('default-avatar.png')
+            h2.single-question-answers__current-answer-title
+              | Ответ #{index+1}
+            .single-question-answers__current-answer-body
+              p
+                |#{answer.body}
+            -if user_signed_in? && current_user.author_of?(answer)
+              span.all-questions__current-question-answers-destroy
+                = link_to answer_path(answer), method: :delete
+                  i.material-icons.md-18
+                    |delete
+                  | Удалить ответ
     .single-question-answers__add-answer-for-question
       -if user_signed_in?
         = render 'answers/form'

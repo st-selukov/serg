@@ -1,7 +1,7 @@
 = form_for [@question, @answer], class: 'add-answer-form' do |f|
+  = render 'commons/errors', resource: @answer
   .answer-desk
     = f.label 'Текст ответа'
     = f.text_area :body
   .add-answer-form-subm
     = f.button 'Разместить ответ'
-  = render 'commons/errors', resource: @answer

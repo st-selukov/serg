@@ -38,7 +38,7 @@ RSpec.describe AnswersController, type: :controller do
   describe 'DELETE #destroy' do
     sign_in_user
 
-    context 'фnswer belongs to the user' do
+    context 'answer belongs to the user' do
       before { answer.update!(user: @user) }
 
       it 'delete answer' do
