@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :load_question, only: [:show]
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
+  before_action :load_question, only: [:show, :destroy]
 
   def index
     @questions = Question.all
@@ -10,16 +11,24 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @answers = @question.answers.all
     @answer = @question.answers.build
   end
 
   def create
-    @question = Question.new(question_params)
+    @question = current_user.questions.new(question_params)
     if @question.save
       redirect_to questions_path
     else
       render :new
+    end
+  end
+
+  def destroy
+    if current_user.author_of?(@question)
+      @question.destroy
+      redirect_to questions_path
+    else
+      redirect_to root_url
     end
   end
 

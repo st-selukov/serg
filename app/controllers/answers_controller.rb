@@ -1,10 +1,24 @@
 class AnswersController < ApplicationController
-  before_action :load_question
+  before_action :authenticate_user!
+  before_action :load_question, only: [:create]
+  before_action :load_answer, only: [:destroy]
 
   def create
-    @answer = @question.answers.new(answer_params)
-    @answer.save
-    redirect_to question_path(@question)
+    @answer = @question.answers.new(answer_params.merge(user: current_user))
+    if @answer.save
+      redirect_to @question
+    else
+      render 'questions/show'
+    end
+  end
+
+  def destroy
+    if current_user.author_of?(@answer)
+      @answer.destroy
+      redirect_to @answer.question
+    else
+      redirect_to root_url
+    end
   end
 
   private

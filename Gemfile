@@ -26,8 +26,9 @@ gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'susy'
-gem "compass-rails", github: "Compass/compass-rails", branch: "master"
+gem 'compass-rails', github: 'Compass/compass-rails', branch: 'master'
 gem 'material_icons'
+gem 'devise'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -53,6 +54,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
+  gem 'capybara'
   gem 'fuubar'
   gem 'rails-controller-testing'
   gem 'rspec-rails'

@@ -1,0 +1,86 @@
+@import 'susy';
+@import 'compass';
+
+.container {
+  @include container(1170px);
+  padding: 0 15px;
+}
+
+.main-header {
+  width: 100%;
+  background: #ff7361;
+  padding: 15px 0;
+}
+
+.menu-sec-wrapper {
+  background: rgb(47, 50, 57);
+  width: 100%;
+  padding: 20px 0;
+}
+
+.site-logo {
+  @include span(3 of 12);
+
+  & a {
+    font-family: "Lilita One", cursive;
+    font-size: 40px;
+    font-weight: 500;
+    color: #ff7361;
+    text-decoration: none;
+    letter-spacing: 3px;
+  }
+}
+
+.top-site-nav {
+  display: inline-block;
+  float: right;
+
+  & ul {
+    width: 100%;
+    @include display-flex();
+    list-style: none;
+    line-height: 40px;
+  }
+}
+
+.current-nav-page {
+  border-radius: 3px;
+  margin-right: 20px;
+
+  &:hover {
+    transition: 0.3s;
+    background: #ff7361;
+  }
+
+  & a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    font-size: 18px;
+  }
+}
+
+.current-nav-page:nth-child(3) {
+  margin-right: 0;
+}
+
+.ask-question-main {
+  padding: 30px 0 20px 15px;
+}
+
+.ask-button {
+  border-radius: 5px;
+  background-color: rgb(47, 50, 57);
+  padding: 15px 40px;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}

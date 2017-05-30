@@ -2,9 +2,30 @@ doctype html
 html
   head
     title
-      | Serg
+      | Questions - Answers
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   body
+    header.main-header
+      .menu-sec-wrapper
+        section.container.menu-sec
+          div.site-logo
+            = link_to root_url
+              | QUESTIONS
+          nav.top-site-nav
+            ul
+              li.current-nav-page
+                = link_to new_question_path
+                  | Задать вопрос
+              li.current-nav-page
+                = link_to questions_path
+                  | Все вопросы
+              li.current-nav-page
+                = link_to
+                  | Профайл
+      .section.ask-question-main.container
+        .ask-question
+          = link_to new_question_path, class: 'ask-button'
+            | Задать вопрос
     = yield
