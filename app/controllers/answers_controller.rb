@@ -17,7 +17,7 @@ class AnswersController < ApplicationController
       @answer.destroy
       redirect_to @answer.question
     else
-      render 'questions/show'
+      redirect_to root_url
     end
   end
 
