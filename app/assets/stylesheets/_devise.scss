@@ -8,4 +8,27 @@
   @include display-flex();
   @include flex-direction(column);
   margin: 100px auto;
+
+  h2 {
+    color: red;
+    font-size: 30px;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+  
+  .field {
+    padding-bottom: 20px;
+  }
+
+  input[type="email"], input[type="password"] {
+    width: 100%;
+  }
+  
+  input[type="submit"]{
+    width: 100%;
+    color: red;
+    font-size: 20px;
+    margin-bottom: 10px;
+ }
 }
+
