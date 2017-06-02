@@ -11,12 +11,12 @@ RSpec.describe AnswersController, type: :controller do
     context ' create answer with valid attributes' do
 
       it 'create answer for question and saving in database' do
-        expect {post :create, params: { question_id: question.id, answer: attributes_for(:answer)}}
+        expect { post :create, params: { question_id: question.id, answer: attributes_for(:answer), format: :js  } }
             .to change(question.answers, :count).by(1)
       end
 
       it 'create answer for user ' do
-        expect { post :create, params: { question_id: question.id, answer: attributes_for(:answer) } }
+        expect { post :create, params: { question_id: question.id, answer: attributes_for(:answer), format: :js  } }
             .to change(@user.answers, :count).by(1)
       end
     end
@@ -24,14 +24,9 @@ RSpec.describe AnswersController, type: :controller do
     context 'create answer with invalid attributes' do
 
       it 'try save new question, but not save' do
-        expect {post :create, params: {question_id: question.id, answer: attributes_for(:invalid_answer)}}
+        expect { post :create, params: { question_id: question.id, answer: attributes_for(:invalid_answer), format: :js  } }
             .to_not change(Answer, :count)
       end
-    end
-
-    it 'redirect to questions#show view' do
-      post :create, params: {question_id: question.id, answer: attributes_for(:answer)}
-      expect(response).to redirect_to question_path(question)
     end
   end
 

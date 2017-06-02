@@ -1,0 +1,17 @@
+- if answer.persisted?
+  article.single-question-answers__current_answer
+    .single-question__user-avatar
+      = link_to
+        = image_tag('default-avatar.png')
+    h2.single-question-answers__current-answer-title
+      | Ответ #{answer.id}
+    .single-question-answers__current-answer-body
+      p
+        |#{answer.body}
+
+    - if user_signed_in? && current_user.author_of?(answer)
+      span.all-questions__current-question-answers-destroy
+        = link_to answer_path(answer), method: :delete
+          i.material-icons.md-18
+            |delete
+          | Удалить ответ
