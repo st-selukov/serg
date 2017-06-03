@@ -1,5 +1,5 @@
-= form_for [@question, @answer], class: 'add-answer-form' do |f|
-  = render 'commons/errors', resource: @answer
+= form_for [@question, @answer], remote: true, data_method: :post, class: 'add-answer-form' do |f|
+  .all-form-inputs-errors
   .answer-desk
     = f.label 'Текст ответа'
     = f.text_area :body

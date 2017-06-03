@@ -5,7 +5,7 @@ feature 'Create Answer', %q{User  can create answers for questions} do
   given!(:user) { create(:user) }
   given!(:question) { create(:question, user: user) }
 
-  scenario 'authenticated user try create answer' do
+  scenario 'authenticated user try create answer', js: true do
     sign_in(user)
     visit question_path(question)
     fill_in  'answer[body]', with: 'Test Answer'
@@ -15,7 +15,7 @@ feature 'Create Answer', %q{User  can create answers for questions} do
     expect(page).to have_content 'Test Answer'
   end
 
-  scenario 'authenticated user try create answer with blank body' do
+  scenario 'authenticated user try create answer with blank body', js: true do
     sign_in(user)
     visit question_path(question)
 
@@ -27,7 +27,7 @@ feature 'Create Answer', %q{User  can create answers for questions} do
     expect(page).to have_content 'Необходимо заполнить поле ответа'
   end
 
-  scenario 'non authenticated user  can try create answer' do
+  scenario 'non authenticated user  can try create answer', js: true do
     visit question_path(question)
 
     expect(page).to_not have_content 'answer[body]'
