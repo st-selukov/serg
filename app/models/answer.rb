@@ -8,13 +8,11 @@ class Answer < ApplicationRecord
 
   def set_best
     Answer.transaction do
-      begin
-        if question.has_the_best_answer?
-          answer = question.answers.find_by(best: true)
-          answer.update(best: false)
-        end
-        update(best: true)
+      if question.has_the_best_answer?
+        answer = question.answers.find_by(best: true)
+        answer.update!(best: false)
       end
+      update!(best: true)
     end
   end
 end
