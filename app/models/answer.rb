@@ -6,11 +6,15 @@ class Answer < ApplicationRecord
   belongs_to :user
   validates :body, presence: true
 
-  def set_the_best_answer
-    if question.has_the_best_answer?
-      answer = question.answers.find_by(best: true)
-      answer.update_attributes(best: false)
+  def set_best
+    Answer.transaction do
+      begin
+        if question.has_the_best_answer?
+          answer = question.answers.find_by(best: true)
+          answer.update(best: false)
+        end
+        update(best: true)
+      end
     end
-    update_attributes(best: true)
   end
 end

@@ -38,7 +38,7 @@ RSpec.describe AnswersController, type: :controller do
       before { answer.update!(user: @user) }
 
       it 'delete answer' do
-        expect { delete :destroy, params: { id: answer } }.to change(Answer, :count).by(-1)
+        expect { delete :destroy, params: { id: answer, format: :js } }.to change(Answer, :count).by(-1)
       end
     end
 
@@ -46,8 +46,13 @@ RSpec.describe AnswersController, type: :controller do
 
       before { answer.user = user }
 
-      it 'not destroy answer, If user is not the owner answer' do
-        expect { delete :destroy, params: { id: answer } }.to_not change(Answer, :count)
+      it 'not destroy answer, If user is not the owner answer', js: true do
+        expect { delete :destroy, params: { id: answer, format: :js } }.to_not change(Answer, :count)
+      end
+
+      it 'not destroy answer, If user is not the owner answer', js: true do
+        delete :destroy, params: { id: answer, format: :js }
+        expect(response).to have_http_status(403)
       end
     end
   end
@@ -74,7 +79,7 @@ RSpec.describe AnswersController, type: :controller do
     end
 
     context 'with best equal true' do
-      before  do
+      before do
         question.update!(user: @user)
         answer.update!(best: true)
       end

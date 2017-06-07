@@ -8,6 +8,6 @@ class Question < ApplicationRecord
   validates :title, length: { in: 5..140 }
 
   def has_the_best_answer?
-    answers.find_by(best: true) ? true : false
+    answers.exists?(best: true) ? true : false
   end
 end

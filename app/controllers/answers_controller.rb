@@ -14,18 +14,26 @@ class AnswersController < ApplicationController
     if current_user.author_of?(@answer)
       @answer.update(answer_params)
       @question = @answer.question
+    else
+      render status: :forbidden
     end
   end
 
   def destroy
     if current_user.author_of?(@answer)
       @answer.destroy
+    else
+      render status: :forbidden
     end
   end
 
   def best_answer
-    @answer.set_the_best_answer
-    redirect_to @answer.question
+    if current_user.author_of?(@answer.question)
+      @answer.set_best
+      redirect_to @answer.question
+    else
+      render status: :forbidden
+    end
   end
 
   private
