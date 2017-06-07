@@ -1,19 +1,31 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :load_question, only: [:create]
-  before_action :load_answer, only: [:destroy]
+  before_action :load_answer, only: [:update, :destroy, :best_answer]
 
   def create
     @answer = @question.answers.create(answer_params.merge(user: current_user))
   end
 
+  def edit
+  end
+
+  def update
+    if current_user.author_of?(@answer)
+      @answer.update(answer_params)
+      @question = @answer.question
+    end
+  end
+
   def destroy
     if current_user.author_of?(@answer)
       @answer.destroy
-      redirect_to @answer.question
-    else
-      redirect_to root_url
     end
+  end
+
+  def best_answer
+    @answer.set_the_best_answer
+    redirect_to @answer.question
   end
 
   private

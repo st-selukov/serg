@@ -29,13 +29,28 @@
   }
 }
 
-.single-question-title, .single-question-answers__all-answers-title, .ask-question-title {
-  font-weight: 600;
-  font-size: 28px;
+.single-question-answers__current-answer-title_wrapper {
+  @include display-flex();
+  justify-content: space-between;
+}
+
+.single-question-answers__current-answer-wrapper_for-arrtibutes {
+  @include display-flex();
+  align-items: flex-start;
+}
+
+.single-question-title, .single-question-answers__all-answers-title, .ask-question-title,
+.single-question-answers__current-answer-title {
+  font-size: 16px;
+}
+
+.single-question__question-answer-votes {
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .single-question-body p, .single-question-answers__current-answer-body p {
-  font-size: 13px;
+  font-size: 14px;
   color: #848991;
   padding: 30px 0;
   line-height: 22px;
@@ -56,6 +71,11 @@
     bottom: 0;
   }
 }
+
+.single-question-answers__current-answer-body {
+  word-wrap: break-word;
+}
+
 
 .single-question-answers__all-answers-title {
   margin-bottom: 20px
@@ -78,7 +98,16 @@
     width: 100%;
     height: 200px;
     resize: none;
+    word-wrap: break-word;
   }
+}
+
+.edited-area {
+  margin-top: 20px;
+  width: 100%;
+  height: 200px;
+  resize: none;
+  font-size: 16px;
 }
 
 .add-answer-form-subm, .ask-question-form-subm {
@@ -140,13 +169,51 @@ input[type="text"] , textarea {
   }
 }
 
-.all-form-inputs-errors {
+.current-answer-edit-form {
+  display: none;
+
+  & textarea {
+    margin-top: 20px;
+    width: 100%;
+    height: 200px;
+    resize: none;
+  }
+
+  .update-current-answer-button {
+    padding: 5px;
+    margin: 20px 0;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      color: #dcdcdc;
+      background: rgb(255, 115, 97);
+    }
+  }
+}
+.all-form-inputs-errors, .error-answer-update-messages {
   color: red;
   font-size: 20px;
   padding-bottom: 40px;
+
   p:nth-child(1){
     margin-bottom: 20px;
     font-size: 22px;
   }
 }
 
+.error-answer-update-messages {
+  color: red;
+  font-size: 20px;
+  padding: 5px 0;
+}
+
+.single-question-answers__current-answer_best_answer {
+  color: rgb(255, 115, 97);
+  font-size: 13px;
+  line-height: 18px;
+
+  & i {
+    padding-left: 5px;
+  }
+}

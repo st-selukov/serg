@@ -68,23 +68,25 @@
 }
 
 .all-questions__current-question-answers-count,
-.all-questions__current-question-answers-destroy {
+.all-questions__current-question-answer-destroy,
+.all-questions__current-question-answer-edit,
+.single-question-answers__current-answer_best_answer {
   display: inline-block;
   margin-right: 10px;
+  font-size: 13px;
+  line-height: 18px;
+
+  & i {
+    margin-right: 5px;
+  }
 
   & a {
     text-decoration: none;
-    font-size: 13px;
-    line-height: 18px;
     vertical-align: top;
     color: #848991;
 
     &:hover {
       color: rgb(255, 115, 97);
-    }
-
-    & i {
-      margin-right: 5px;
     }
   }
 }
@@ -101,6 +103,7 @@
   @include display-flex();
   @include flex-direction(column);
   margin: auto;
+
   & a {
     border-radius: 3px;
     padding: 15px 40px;

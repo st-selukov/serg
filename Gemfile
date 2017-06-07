@@ -28,6 +28,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'susy'
 gem 'compass-rails', github: 'Compass/compass-rails', branch: 'master'
 gem 'material_icons'
+gem 'font-awesome-rails'
 gem 'devise'
 gem 'jquery-rails'
 # Use Redis adapter to run Action Cable in production
