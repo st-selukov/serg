@@ -10,11 +10,16 @@ section.single-question-show.container
         p
           |#{@question.body}
       -if user_signed_in? && current_user.author_of?(@question)
-        span.all-questions__current-question-answers-destroy
+        span.all-questions__current-question-answer-destroy
           = link_to @question, method: :delete
             i.material-icons.md-18
               |delete
             | Удалить вопрос
+        span.all-questions__current-question-answer-edit
+          = link_to edit_question_path(@question)
+            i.material-icons.md-18
+              |mode_edit
+            | Редактировать вопрос
 
     .single-question-answers__all-answers
       h2.single-question-answers__all-answers-title
@@ -24,3 +29,4 @@ section.single-question-show.container
     .single-question-answers__add-answer-for-question
       -if user_signed_in?
         = render 'answers/form'
+  = render 'commons/signed_signup_buttons'

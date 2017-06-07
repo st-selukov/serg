@@ -2,6 +2,6 @@
   .all-form-inputs-errors
   .answer-desk
     = f.label 'Текст ответа'
-    = f.text_area :body
+    = f.text_area :body , id: 'add-answer-body'
   .add-answer-form-subm
     = f.button 'Разместить ответ'

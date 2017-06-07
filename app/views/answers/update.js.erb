@@ -1,0 +1,10 @@
+<% if @answer.errors.present? %>
+  <% @answer.errors.full_messages.each do |message| %>
+    $(".error-answer-update-messages").html(
+        "<p> Исправьте следующие ошибки и попробуйте снова:</p>" +
+        "<%= j message.split(' ')[1..-1].join(' ') %>"
+    );
+  <% end %>
+<% else %>
+  $('.single-question-answers__all-answers').html("<%= j render @question.answers %>");
+<% end %>

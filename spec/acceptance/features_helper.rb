@@ -2,12 +2,12 @@ require 'rails_helper'
 require 'capybara/poltergeist'
 
 RSpec.configure do |config|
-
   config.include AcceptanceHelper, type: :feature
 
   config.use_transactional_fixtures = false
 
   Capybara.javascript_driver = :poltergeist
+
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
@@ -28,4 +28,5 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
 end

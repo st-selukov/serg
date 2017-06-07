@@ -1,10 +1,21 @@
-= form_for @question, class: 'ask-question-form' do |f|
-  = render 'commons/errors', resource: @question
-  .ask-question-form-inputs
-    = f.label 'Заголовок вопроса'
-    = f.text_field :title
-  .ask-question-form-desc
-    = f.label 'Описание вопроса'
-    = f.text_area :body
-  .ask-question-form-subm
-    = f.button 'Разместить вопрос на сайте'
+section.aks-question-sect.container
+  .ask-question-wrapper
+    h1.ask-question-title
+      -if controller.action_name == 'new'
+        |Задайте вопрос
+      -else
+        | Редактировать вопрос
+    = form_for @question, class: 'ask-question-form' do |f|
+      .all-form-inputs-errors
+        = render 'commons/errors', resource: @question
+      .ask-question-form-inputs
+        = f.label 'Заголовок вопроса'
+        = f.text_field :title
+      .ask-question-form-desc
+        = f.label 'Описание вопроса'
+        = f.text_area :body
+      .ask-question-form-subm
+        - if controller.action_name == 'new'
+          = f.button 'Разместить вопрос на сайте'
+        - else
+          = f.button 'Обновить вопрос'

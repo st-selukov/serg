@@ -64,9 +64,9 @@ RSpec.describe QuestionsController, type: :controller do
           .to change(Question, :count).by(1)
       end
 
-      it 'redirect to questions#index view' do
-        post :create, params: { question: attributes_for(:question)}
-        expect(response).to redirect_to questions_path
+      it 'redirect to question#show view' do
+        post :create, params: { question: attributes_for(:question) }
+        expect(response).to redirect_to question_path(question.id - 1)
       end
 
       it 'create question for user ' do
