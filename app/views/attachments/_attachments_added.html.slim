@@ -1,0 +1,14 @@
+.attacments-for-question-answer-wrapper
+  -if obj.instance_of? Question
+    h3 Прикрепите файлы к вашему вопросу
+  -elsif obj.instance_of? Answer
+    h3 Прикрепите файлы к вашему ответу
+  .attacments-for-question-answer-file-fields
+    .additional-attacments
+    =f.fields_for :attachments do |a|
+      -unless a.object.file?
+        =render 'attachments/attachment_fields', f: a
+        .additional-attacments-fields
+          =link_to_add_association 'Добавить  файл', f, :attachments,partial: 'attachments/attachment_fields',
+                data: {association_insertion_node: '.attacments-for-question-answer-file-fields .additional-attacments',
+                        association_insertion_method: 'prepend'}

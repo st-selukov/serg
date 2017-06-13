@@ -6,6 +6,7 @@
         );
   <% end %>
 <% else %>
+  $("div.all-form-inputs-errors").html("");
   $('.single-question-answers__all-answers').append("<%= j render @answer  %>");
   $('#add-answer-body').val('');
 <% end %>

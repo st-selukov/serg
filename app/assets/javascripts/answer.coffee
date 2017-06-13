@@ -10,5 +10,10 @@ ready = ->
       answer_id = $(this).data('answerId')
       $('form#update-answer-form-' + answer_id).show();
 
+    $('.delete_attachment').click (e) ->
+      e.preventDefault();
+      a_id = $(this).data('attachmentId')
+      $("#attachment-file-" + a_id).hide();
+
 $(document).ready(ready)
 $(document).on('DOMNodeInserted', ready)

@@ -103,20 +103,23 @@
   @include display-flex();
   @include flex-direction(column);
   margin: auto;
+  border-radius: 5px;
+  width: 100%;
 
   & a {
     border-radius: 3px;
-    padding: 15px 40px;
+    padding: 18px 30px;
     text-align: center;
     background:  rgb(255, 115, 97);
-    margin-bottom: 20px;
+    margin: 0 auto 10px;
     text-decoration: none;
     color:rgb(222, 222, 222) ;
     font-weight: 500;
+    width: 80%;
 
     &:hover {
       transition: 0.3s;
-      color: rgb(255, 255, 255);
+      color: rgba(0, 0, 0, 0.5);
     }
   }
 }
@@ -127,4 +130,38 @@
   margin-top: 50px;
   font-weight: 500;
   color: rgb(255, 115, 97);
+}
+
+.attacments-for-question-answer-wrapper {
+  h3 {
+    padding: 10px 0;
+  }
+}
+
+.attacment-nested-fields {
+  @include display-flex();
+  justify-content: space-between;
+  padding: 10px 0;
+  line-height: 30px;
+
+  & a {
+    text-decoration: none;
+    color: rgb(255, 115, 97);
+  }
+}
+
+.additional-attacments-fields {
+  padding: 10px 0;
+
+  & a{
+    padding: 5px 10px;
+    background: rgb(255, 115, 97);
+    text-decoration: none;
+    color: black;
+    border-radius: 3px;
+
+    &:hover {
+      color: white;
+    }
+  }
 }

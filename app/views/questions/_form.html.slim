@@ -14,6 +14,8 @@ section.aks-question-sect.container
       .ask-question-form-desc
         = f.label 'Описание вопроса'
         = f.text_area :body
+      = render 'attachments/attachments_added', f: f, obj: @question
+
       .ask-question-form-subm
         - if controller.action_name == 'new'
           = f.button 'Разместить вопрос на сайте'

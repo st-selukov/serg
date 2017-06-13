@@ -29,22 +29,31 @@
       p id="answer-#{answer.id}"
         |#{answer.body}
 
+    .single-question-attachments-files-wrapper
+      - unless answer.attachments.blank?
+        p
+          |Прикрепленные файлы
+        ul.single-question-attached-files-list
+          - answer.attachments.each do |a|
+            = render 'attachments/show_attachments', a: a, subject: answer
+
     - if user_signed_in? && current_user.author_of?(answer)
       =form_for answer, remote: true, html: { class: 'current-answer-edit-form',
                                 id: "update-answer-form-#{answer.id}" } do |f|
         .error-answer-update-messages
         =f.text_area :body, class: 'edit_answer'
+        = render 'attachments/attachments_added', f: f, obj: answer
         =f.submit 'Обновить ответ', class: 'update-current-answer-button'
+
       span.all-questions__current-question-answer-destroy
-        = link_to answer_path(answer),method: :delete, remote: true, data: { answer_id: answer.id},
-                                                                      class: 'delete-curent-answer'
+        = link_to answer_path(answer),method: :delete, remote: true,
+                data: { answer_id: answer.id}, class: 'delete-curent-answer'
           i.material-icons.md-18
             |delete
           | Удалить ответ
       span.all-questions__current-question-answer-edit
-        i.material-icons.md-18
-          |mode_edit
-        = link_to 'Редактировать ответ', '', remote: true, data: { answer_id: answer.id },
-                                               class: 'current-answer-link-edit'
-
-
+        = link_to nil, remote: true,
+                data: { answer_id: answer.id }, class: 'current-answer-link-edit'
+          i.material-icons.md-18
+            |mode_edit
+          |Редактировать ответ

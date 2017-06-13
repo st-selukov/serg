@@ -1,0 +1,8 @@
+.attacment-nested-fields
+  -if f.object.file?
+    .attacment-single-file-name
+      = f.object.file.filename
+  -else
+    .attacment-file-field
+      =f.file_field :file
+    =link_to_remove_association 'Удалить', f, { wrapper_class: 'attacment-nested-fields' }

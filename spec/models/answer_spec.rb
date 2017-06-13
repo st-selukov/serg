@@ -10,6 +10,8 @@ RSpec.describe Answer, type: :model do
   it { should validate_presence_of :body }
   it { should belong_to :question }
   it { should belong_to :user }
+  it { should have_many(:attachments).dependent(:destroy) }
+  it { should accept_nested_attributes_for :attachments }
 
   describe 'set answer the best' do
 
@@ -26,6 +28,12 @@ RSpec.describe Answer, type: :model do
       answer2.reload
 
       expect(answer2).to have_attributes(best: false)
+    end
+  end
+
+  describe 'check attacments' do
+    it 'return true if answer not have attachment' do
+      expect(answer.not_have_attachment(answer: ['file'])).to be true
     end
   end
 end

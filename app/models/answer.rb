@@ -4,7 +4,10 @@ class Answer < ApplicationRecord
 
   belongs_to :question
   belongs_to :user
+  has_many :attachments, as: :attachable, dependent: :destroy
   validates :body, presence: true
+
+  accepts_nested_attributes_for :attachments, reject_if: :not_have_attachment
 
   def set_best
     Answer.transaction do
@@ -14,5 +17,9 @@ class Answer < ApplicationRecord
       end
       update!(best: true)
     end
+  end
+
+  def not_have_attachment(attributes)
+    attributes['file'].blank?
   end
 end
