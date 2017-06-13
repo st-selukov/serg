@@ -8,6 +8,7 @@
   @include span(8 of 12);
   @include display-flex();
   @include flex-direction(column);
+  padding-top: 30px;
 }
 
 .single-question, .single-question-answers__current_answer {
@@ -75,7 +76,6 @@
 .single-question-answers__current-answer-body {
   word-wrap: break-word;
 }
-
 
 .single-question-answers__all-answers-title {
   margin-bottom: 20px
@@ -191,6 +191,7 @@ input[type="text"] , textarea {
     }
   }
 }
+
 .all-form-inputs-errors, .error-answer-update-messages {
   color: red;
   font-size: 20px;
@@ -215,5 +216,34 @@ input[type="text"] , textarea {
 
   & i {
     padding-left: 5px;
+  }
+}
+
+.single-question-attachments-files-wrapper {
+  padding-bottom: 30px;
+
+  & p {
+    margin-bottom: 20px;
+  }
+}
+
+.single-question-attached-files-list {
+  list-style: none;
+
+  & li {
+    justify-content: space-between;
+    padding: 15px 0 15px 3px;
+    line-height: 24px;
+
+    & a {
+      padding-left: 10px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #848991;
+
+      &:hover {
+          color: rgb(255, 115, 97);
+      }
+    }
   }
 }

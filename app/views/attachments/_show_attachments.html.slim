@@ -1,0 +1,6 @@
+li.attachment-file id="attachment-file-#{a.id}"
+  i.fa.fa-file aria-hidden="true"
+  = link_to a.file.filename, a.file_url
+  -if user_signed_in? && current_user.author_of?(a.attachable)
+    = link_to 'Удалить файл', a, remote: true, method: :delete,
+                  class: 'delete_attachment', data: {attachment_id: a.id}
