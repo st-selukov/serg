@@ -6,8 +6,8 @@
 
 .single-question-and-his-answers, .ask-question-wrapper {
   @include span(8 of 12);
-  @include display-flex();
-  @include flex-direction(column);
+  display: flex;
+  flex-direction: column;
   padding-top: 30px;
 }
 
@@ -31,12 +31,12 @@
 }
 
 .single-question-answers__current-answer-title_wrapper {
-  @include display-flex();
+  display: flex;
   justify-content: space-between;
 }
 
 .single-question-answers__current-answer-wrapper_for-arrtibutes {
-  @include display-flex();
+  display: flex;
   align-items: flex-start;
 }
 
@@ -45,7 +45,8 @@
   font-size: 16px;
 }
 
-.single-question__question-answer-votes {
+.curren-question-answer-count-votes {
+  padding-left: 10px;
   font-size: 14px;
   font-weight: 500;
 }
@@ -60,8 +61,8 @@
 }
 
 .single-question-answers__all-answers {
-  @include display-flex();
-  @include flex-direction(column);
+  display: flex;
+  flex-direction: column;
 }
 
 .single-question-answers__current_answer {
@@ -90,8 +91,8 @@
 }
 
 .answer-desk {
-  @include display-flex();
-  @include flex-direction(column);
+  display: flex;
+  flex-direction: column;
 
   & textarea {
     margin-top: 20px;
@@ -139,8 +140,8 @@
 }
 
 .ask-question-form, .ask-question-form-inputs, .ask-question-form-desc {
-  @include display-flex();
-  @include flex-direction(column);
+  display: flex;
+  flex-direction: column;
 }
 
 input[type="text"] , textarea {
@@ -209,13 +210,19 @@ input[type="text"] , textarea {
   padding: 5px 0;
 }
 
-.single-question-answers__current-answer_best_answer {
+.single-question-answers__current-answer_best_answer,
+.current-question-answer-votes {
   color: rgb(255, 115, 97);
   font-size: 13px;
   line-height: 18px;
 
   & i {
-    padding-left: 5px;
+    padding-left: 10px;
+    color: black;
+
+    &:hover {
+      color: rgb(255, 115, 97);
+    }
   }
 }
 
@@ -246,4 +253,12 @@ input[type="text"] , textarea {
       }
     }
   }
+}
+
+.question-user-title {
+  display: flex;
+  font-size: 16px;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
 }

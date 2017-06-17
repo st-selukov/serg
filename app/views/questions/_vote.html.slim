@@ -1,0 +1,10 @@
+= link_to vote_up_question_path(question) , remote: true,  data: { question_id: question.id },
+        class: 'vote-up-question-link', method: :put, title: 'Нравится', rel: 'tooltip'
+  i.fa.fa-thumbs-up aria-hidden="true"
+
+= link_to vote_down_question_path(question) , remote: true,  data: { question_id: question.id },
+        class: 'vote-down-question-link', method: :put, title: 'Не нравится', rel: 'tooltip'
+  i.fa.fa-thumbs-down aria-hidden="true"
+
+span.curren-question-answer-count-votes id="question-#{question.id}-count-votes"
+  = question.votes_sum

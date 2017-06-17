@@ -23,7 +23,7 @@
 .all-questions_current-question {
   width: 100%;
   background-color: rgb(255, 255, 255);
-  padding: 0 30px 20px 150px;
+  padding: 30px 30px 20px 150px;
   margin-bottom: 30px;
   position: relative;
 }
@@ -40,7 +40,7 @@
 }
 
 .all-questions__current-question-title {
-  padding: 30px 0;
+  padding: 5px 0 20px 0;
 
   & a {
     text-decoration: none;
@@ -93,15 +93,15 @@
 
 .user-sing-in-up-asside {
   @include span( 3 of 12);
-  @include display-flex();
-  @include flex-direction(column);
+  display: flex;
+  flex-direction: column;
   margin-left: 50px;
   margin-top: 130px
 }
 
 .users-button-group {
-  @include display-flex();
-  @include flex-direction(column);
+  display: flex;
+  flex-direction: column;
   margin: auto;
   border-radius: 5px;
   width: 100%;
@@ -139,7 +139,7 @@
 }
 
 .attacment-nested-fields {
-  @include display-flex();
+  display: flex;
   justify-content: space-between;
   padding: 10px 0;
   line-height: 30px;

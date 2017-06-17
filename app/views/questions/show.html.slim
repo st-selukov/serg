@@ -4,7 +4,13 @@ section.single-question-show.container
       .single-question__user-avatar
         = link_to
           = image_tag('default-avatar.png')
-      h2.single-question-title
+      .question-user-title
+        |Вопрос пользователя #{@question.user.email}
+        .question_votes-wrapper
+          span.current-question-answer-votes
+            = render 'questions/vote',question: @question
+
+      h3.single-question-title
         |#{@question.title}
       .single-question-body
         p

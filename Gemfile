@@ -24,7 +24,6 @@ gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'susy'
-gem 'compass-rails', github: 'Compass/compass-rails', branch: 'master'
 gem 'material_icons'
 gem 'font-awesome-rails'
 gem 'devise'
