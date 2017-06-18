@@ -8,46 +8,38 @@ module Voted
   end
 
   def vote_up
-    if user_signed_in?
-      unless current_user.votable_owner? @parent
-        @parent.vote_up(current_user)
-        @parent.user.change_reputation(YOUR_VOTABLE_IS_VOTED_UP)
-        current_user.change_reputation(YOU_VOTED_UP_AN_VOTABLE)
-        publish_vote
-      end
+    if user_signed_in? && !current_user.votable_owner?(@parent)
+      @parent.vote_up(current_user)
+      @parent.user.change_reputation(YOUR_VOTABLE_IS_VOTED_UP)
+      current_user.change_reputation(YOU_VOTED_UP_AN_VOTABLE)
+      publish_vote
     end
   end
 
   def vote_down
-    if user_signed_in?
-      unless current_user.votable_owner? @parent
-        @parent.vote_down(current_user)
-        @parent.user.change_reputation(YOUR_VOTABLE_IS_VOTED_DOWN)
-        publish_vote
-      end
+    if user_signed_in? && !current_user.votable_owner?(@parent)
+      @parent.vote_down(current_user)
+      @parent.user.change_reputation(YOUR_VOTABLE_IS_VOTED_DOWN)
+      publish_vote
     end
   end
 
   def destroy_vote
-    if user_signed_in?
-      unless current_user.votable_owner? @parent
-        @parent.destroy_vote(current_user)
-        publish_vote
-      end
+    if user_signed_in? && !current_user.votable_owner?(@parent)
+      @parent.destroy_vote(current_user)
+      publish_vote
     end
   end
 
   private
 
   def publish_vote
-    render json: @parent, status: :ok
+    render json: @parent.as_json, status: :ok
   end
 
   def check_reputation
-    if user_signed_in?
-      unless current_user.have_reputation_for_voting?
-        render json: current_user.reputation, status: :unprocessable_entity
-      end
+    if user_signed_in? && !current_user.have_reputation_for_voting?
+      render json: current_user.reputation, status: :unprocessable_entity
     end
   end
 end
