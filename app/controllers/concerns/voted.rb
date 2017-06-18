@@ -34,7 +34,7 @@ module Voted
   private
 
   def publish_vote
-    render json: @parent.as_json, status: :ok
+    render json: @parent, status: :ok
   end
 
   def check_reputation
