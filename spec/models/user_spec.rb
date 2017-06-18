@@ -2,8 +2,7 @@ require 'rails_helper'
 include Constants
 
 RSpec.describe User, type: :model do
-  let(:user) { create(:user) }
-  let(:user2) { create(:user) }
+  include_context 'users'
   let(:question) { create(:question, user_id: user.id) }
   let(:question2) { create(:question, user_id: user.id) }
   let!(:vote) { create(:vote, user_id: user.id, votable: question) }

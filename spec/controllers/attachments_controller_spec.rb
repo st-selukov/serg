@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AttachmentsController, type: :controller do
-  let(:user) { create(:user) }
+  include_context 'controllers'
   let!(:question) { create(:question, user_id: user.id) }
   let!(:attachment) { create(:attachment, attachable: question) }
 

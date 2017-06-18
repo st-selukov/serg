@@ -1,9 +1,7 @@
 require_relative '../features_helper'
 
 feature 'Destroy Answer', %q{User can destroy his answer} do
-
-  given(:user) { create(:user) }
-  given(:user2) { create(:user) }
+  include_context 'users'
   given(:question) { create(:question, user: user) }
   given!(:answer) { create(:answer, question: question, user: user) }
 

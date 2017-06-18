@@ -1,6 +1,7 @@
 require_relative '../features_helper'
 
 feature 'Guest can register', %q{To use the site the guest can register} do
+
   scenario 'quest enters valid data' do
     sign_up
 

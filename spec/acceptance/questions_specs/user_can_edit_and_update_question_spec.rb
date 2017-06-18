@@ -1,8 +1,7 @@
 require_relative '../features_helper'
 
 feature 'Update Question', %q{user can edit and update his question} do
-  given!(:user) { create(:user) }
-  given(:user2) { create(:user) }
+  include_context 'users'
   given!(:question) { create(:question, user: user) }
 
   scenario 'authenticated user try edit, and update his question' do

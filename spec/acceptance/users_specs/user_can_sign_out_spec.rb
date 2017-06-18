@@ -1,8 +1,7 @@
 require_relative '../features_helper'
 
 feature 'User can Logout', %q{authenticated user can logout} do
-
-  given(:user) { create(:user) }
+  include_context 'users'
 
   scenario 'authenticated user can logout' do
     sign_in(user)

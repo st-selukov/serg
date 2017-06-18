@@ -22,9 +22,6 @@ module Votable
   def destroy_vote(voter)
     vote = votes.find_by_user_id(voter)
     vote.destroy
-  end
-
-  def update_votes
-    update(vote_sum: votes.sum(:vote_value))
+    votes_sum > 0 ? update(votes_sum: votes_sum - 1) : update(votes_sum: votes_sum + 1)
   end
 end

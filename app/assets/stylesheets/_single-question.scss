@@ -37,7 +37,8 @@
 
 .single-question-answers__current-answer-wrapper_for-arrtibutes {
   display: flex;
-  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 20px;
 }
 
 .single-question-title, .single-question-answers__all-answers-title, .ask-question-title,
@@ -216,10 +217,13 @@ input[type="text"] , textarea {
   font-size: 13px;
   line-height: 18px;
 
-  & i {
-    padding-left: 10px;
-    color: black;
+  a {
+    padding-right: 5px;
+  }
 
+  & i {
+    color: black;
+    padding-left: 15px;
     &:hover {
       color: rgb(255, 115, 97);
     }

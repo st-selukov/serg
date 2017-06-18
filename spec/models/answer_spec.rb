@@ -2,16 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Answer, type: :model do
 
-  let(:user) { create(:user) }
+  include_context 'users'
   let(:question) { create(:question, user_id: user.id) }
   let(:answer) { create(:answer, user_id: user.id, question_id: question.id) }
   let(:answer2) { create(:answer, user_id: user.id, question_id: question.id) }
 
+
   it { should validate_presence_of :body }
   it { should belong_to :question }
   it { should belong_to :user }
-  it { should have_many(:attachments).dependent(:destroy) }
-  it { should accept_nested_attributes_for :attachments }
 
   describe 'set answer the best' do
 
@@ -31,9 +30,7 @@ RSpec.describe Answer, type: :model do
     end
   end
 
-  describe 'check attacments' do
-    it 'return true if answer not have attachment' do
-      expect(answer.not_have_attachment(answer: ['file'])).to be true
-    end
-  end
+  let(:parent) { answer }
+  it_behaves_like 'Votable'
+  it_behaves_like 'Attachable'
 end

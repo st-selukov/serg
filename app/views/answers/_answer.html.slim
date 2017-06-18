@@ -3,21 +3,22 @@
     .single-question__user-avatar
       = link_to
         = image_tag('default-avatar.png')
-    .single-question-answers__current-answer-title_wrapper
-      h2.single-question-answers__current-answer-title
-        |Ответ пользователя #{answer.user.email}
-      .single-question-answers__current-answer-wrapper_for-arrtibutes
-        -if answer.best
+
+    .single-question-answers__current-answer-wrapper_for-arrtibutes
+      - if answer.best
+        span.single-question-answers__current-answer_best_answer
+          |Автор отметил ответ, как лучший
+      - else user_signed_in? && current_user.author_of?(answer.question)
           span.single-question-answers__current-answer_best_answer
-            |Автор вопроса отметил ответ как лучший
-        -else user_signed_in? && current_user.author_of?(answer.question)
-          span.single-question-answers__current-answer_best_answer
-            = link_to best_answer_answer_path(answer),  method: :post
+            = link_to best_answer_answer_path(answer), method: :post
               |Лучший ответ
               i.material-icons.md-18
                 |favorite_border
-        span.current-question-answer-votes
-          =render 'answers/vote', answer: answer
+      span.current-question-answer-votes
+        =render 'answers/vote', answer: answer
+    .single-question-answers__current-answer-title_wrapper
+      h2.single-question-answers__current-answer-title
+        |Ответ пользователя #{answer.user.email}
 
     .single-question-answers__current-answer-body
       p id="answer-#{answer.id}"
