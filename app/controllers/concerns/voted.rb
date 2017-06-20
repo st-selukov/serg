@@ -35,6 +35,8 @@ module Voted
   end
 
   def check_before_voting
-    user_signed_in? && current_user.have_reputation_for_voting?
+    unless user_signed_in? && current_user.have_reputation_for_voting?
+      render json: current_user.reputation, status: :unprocessable_entity
+    end
   end
 end
