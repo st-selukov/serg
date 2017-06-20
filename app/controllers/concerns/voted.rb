@@ -3,6 +3,7 @@ module Voted
 
   included do
     before_action :find_parent, only: [:vote_up, :vote_down, :destroy_vote]
+    before_action :check_before_voting, only: [:vote_up, :vote_down, :destroy_vote]
   end
 
   def vote_up
@@ -31,5 +32,9 @@ module Voted
   def publish_vote
     @parent.reload
     render json: @parent, status: :ok
+  end
+
+  def check_before_voting
+      user_signed_in? && current_user.have_reputation_for_voting?
   end
 end

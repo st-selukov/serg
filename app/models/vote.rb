@@ -12,15 +12,9 @@ class Vote < ApplicationRecord
     votable.update_votes
   end
 
-  def check_owner_repuation
-    if user.reputation < 20
-      errors.add(:user, "У Вас не хватает репутации. Ваша репутация  #{user.reputation}")
-    end
-  end
-
   def change_votable_user_reputation
     if vote_value == 1
-    votable.user.change_reputation(YOUR_VOTABLE_IS_VOTED_UP)
+      votable.user.change_reputation(YOUR_VOTABLE_IS_VOTED_UP)
     elsif vote_value == -1
       votable.user.change_reputation(YOUR_VOTABLE_IS_VOTED_DOWN)
     end

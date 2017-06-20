@@ -16,6 +16,7 @@ RSpec.describe Answer, type: :model do
 
     before do
       answer2.update!(best: true)
+      answer.user.update(reputation: 0)
       answer.set_best
     end
 

@@ -1,8 +1,11 @@
 module Votable
   extend ActiveSupport::Concern
+  include Constants
 
   included do
     has_many :votes, as: :votable, dependent: :destroy
+
+    after_save :up_owner_reputation
   end
 
   def vote_up(voter)
@@ -20,6 +23,10 @@ module Votable
 
   def update_votes
     update(votes_sum: votes.sum(:vote_value))
+  end
+
+  def up_owner_reputation
+    user.change_reputation(YOUR_VOTABLE_IS_VOTED_UP)
   end
 
 end

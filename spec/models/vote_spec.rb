@@ -16,12 +16,6 @@ RSpec.describe Vote, type: :model do
   it { should validate_presence_of :vote_value }
 
   describe 'check voted user reputation' do
-    it 'raise error' do
-      user2.update(reputation: 10)
-      vote.check_owner_repuation
 
-      expect(vote.check_owner_repuation).to raise_error
-
-    end
   end
 end

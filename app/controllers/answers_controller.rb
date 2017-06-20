@@ -6,7 +6,6 @@ class AnswersController < ApplicationController
 
   def create
     @answer = @question.answers.create(answer_params.merge(user: current_user))
-    current_user.change_reputation(YOU_PLACED_QUESTION_OR_ANSWER)
   end
 
   def edit
@@ -32,10 +31,9 @@ class AnswersController < ApplicationController
   def best_answer
     if current_user.author_of?(@answer.question)
       @answer.set_best
-      @answer.user.change_reputation(YOUR_ANSWER_IS_BEST)
       redirect_to @answer.question
     else
-      render status: :forbidden
+      head :forbidden
     end
   end
 

@@ -35,7 +35,7 @@ shared_examples_for 'ControllerVoted' do
     sign_in_user
 
     before do
-      parent.votes.create(user: @user, votable: parent)
+      parent.votes.create(user: @user, votable: parent, vote_value: 1)
     end
 
     it 'does destroy vote and votes sum decrement' do
