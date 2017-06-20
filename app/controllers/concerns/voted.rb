@@ -31,7 +31,7 @@ module Voted
 
   def publish_vote
     @parent.reload
-    render json: @parent, status: :ok
+    render json: [@parent, @parent.class.name.downcase], status: :ok
   end
 
   def check_before_voting
