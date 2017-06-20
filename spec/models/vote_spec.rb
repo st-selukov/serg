@@ -5,7 +5,6 @@ RSpec.describe Vote, type: :model do
   include_context 'users'
   let(:user3){create(:user)}
   let(:question) { create(:question, user: user) }
-  let(:question2) { create(:question, user: user2) }
   let!(:vote) { create(:vote, votable: question, user: user2, vote_value: 1) }
 
   it { should belong_to :votable }
