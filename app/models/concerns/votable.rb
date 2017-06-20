@@ -26,7 +26,7 @@ module Votable
   end
 
   def up_owner_reputation
-    user.change_reputation(YOUR_VOTABLE_IS_VOTED_UP)
+    user.change_reputation(YOU_PLACED_QUESTION_OR_ANSWER)
   end
 
 end

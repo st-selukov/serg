@@ -35,6 +35,6 @@ module Voted
   end
 
   def check_before_voting
-      user_signed_in? && current_user.have_reputation_for_voting?
+    user_signed_in? && current_user.have_reputation_for_voting?
   end
 end
