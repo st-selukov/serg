@@ -1,28 +1,27 @@
 ready = ->
-  $('.vote-up-answer-link').on('click').bind 'ajax:success', (e) ->
-    answer = $.parseJSON(e.detail[2].responseText)
-    $('#answer-' + answer.id + '-count-votes').html(answer.votes_sum)
+  $('.vote-up-answer').on 'ajax:success', (e) ->
+    console.log(e)
+    votes_handler("answer", e)
 
-  $('.vote-down-answer-link').on('click').bind 'ajax:success', (e) ->
-    answer = $.parseJSON(e.detail[2].responseText)
-    $('#answer-' + answer.id + '-count-votes').html(answer.votes_sum)
+  $('.vote-down-answer').on 'ajax:success', (e) ->
+    votes_handler("answer", e)
 
-  $('.vote-reset-answer-link').on('click').bind 'ajax:success', (e) ->
-    answer = $.parseJSON(e.detail[2].responseText)
-    $('#answer-' + answer.id + '-count-votes').html(answer.votes_sum)
+  $('.vote-reset-answer').on 'ajax:success', (e) ->
+    votes_handler("answer", e)
 
-  $('.vote-up-question-link').on('click').bind 'ajax:success', (e) ->
-    question = $.parseJSON(e.detail[2].responseText)
-    $('#question-' + question.id + '-count-votes').html(question.votes_sum)
+  $('.vote-up-question').on 'ajax:success', (e) ->
+    votes_handler("question", e)
 
-  $('.vote-down-question-link').on('click').bind 'ajax:success', (e) ->
-    question = $.parseJSON(e.detail[2].responseText)
-    $('#question-' + question.id + '-count-votes').html(question.votes_sum)
+  $('.vote-down-question').on 'ajax:success', (e) ->
+    votes_handler("question", e)
 
-  $('.vote-reset-question-link').on('click').bind 'ajax:success', (e) ->
-    question = $.parseJSON(e.detail[2].responseText)
-    $('#question-' + question.id + '-count-votes').html(question.votes_sum)
+  $('.vote-reset-question').on 'ajax:success', (e) ->
+    votes_handler("question", e)
 
 $(document).ready(ready)
 $(document).on('DOMNodeInserted', ready)
 
+votes_handler = (votable, event) ->
+  votes_sum = event.detail[0].votes_sum
+  votable_id = event.detail[0].id
+  $("##{votable}-" + votable_id + "-count-votes").html(votes_sum)

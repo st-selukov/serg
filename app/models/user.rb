@@ -11,6 +11,8 @@ class User < ApplicationRecord
     id == obj.user_id
   end
 
+  alias votable_owner? author_of?
+
   def change_reputation(val)
     update(reputation: reputation + val)
   end
@@ -19,11 +21,7 @@ class User < ApplicationRecord
     votes.exists?(votable: votable)
   end
 
-  def votable_owner?(votable)
-    id == votable.user.id
-  end
-
   def have_reputation_for_voting?
-    reputation >= 10
+    reputation >= 20
   end
 end

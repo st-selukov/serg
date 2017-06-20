@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   include Voted
 
-  before_action :authenticate_user!, only: [:new, :edit, :update, :create, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :load_question, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -21,7 +21,6 @@ class QuestionsController < ApplicationController
   def create
     @question = current_user.questions.new(question_params)
     if @question.save
-      current_user.change_reputation(YOU_PLACED_QUESTION_OR_ANSWER)
       redirect_to @question
     else
       render :new

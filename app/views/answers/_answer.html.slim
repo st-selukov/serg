@@ -15,7 +15,7 @@
               i.material-icons.md-18
                 |favorite_border
       span.current-question-answer-votes
-        =render 'answers/vote', answer: answer
+        =render 'votes/vote', votable: answer
     .single-question-answers__current-answer-title_wrapper
       h2.single-question-answers__current-answer-title
         |Ответ пользователя #{answer.user.email}

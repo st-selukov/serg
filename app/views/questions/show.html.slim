@@ -8,7 +8,7 @@ section.single-question-show.container
         |Вопрос пользователя #{@question.user.email}
         .question_votes-wrapper
           span.current-question-answer-votes
-            = render 'questions/vote',question: @question
+            = render 'votes/vote',votable: @question
 
       h3.single-question-title
         |#{@question.title}

@@ -5,21 +5,27 @@ shared_examples_for 'Votable' do
   describe 'votable voted' do
     it 'create new vote with value 1' do
       parent.vote_up(user2)
+      parent.reload
+
       expect(parent.votes_sum).to eq(1)
     end
 
     it 'create new vote with value -1' do
       parent.vote_down(user2)
+      parent.reload
+
       expect(parent.votes_sum).to eq(-1)
     end
   end
 
   describe 'destroy vote' do
-    let!(:vote) { create(:vote, votable: parent, user: user2) }
+    let!(:vote) { create(:vote, votable: parent, user: user2, vote_value: 1) }
     before { parent.update(votes_sum: 1) }
 
     it 'delete vote' do
       parent.destroy_vote(user2)
+      parent.reload
+
       expect(parent.votes_sum).to eq 0
     end
   end

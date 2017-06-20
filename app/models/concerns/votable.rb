@@ -6,22 +6,20 @@ module Votable
   end
 
   def vote_up(voter)
-    unless voter.voted? self
-      votes.create(user: voter)
-      update(votes_sum: votes_sum + 1)
-    end
+    votes.create(user: voter, vote_value: 1) unless voter.voted? self
   end
 
   def vote_down(voter)
-    unless voter.voted? self
-      votes.create(user: voter)
-      update(votes_sum: votes_sum - 1)
-    end
+    votes.create(user: voter, vote_value: -1) unless voter.voted? self
   end
 
   def destroy_vote(voter)
     vote = votes.find_by_user_id(voter)
     vote.destroy
-    votes_sum > 0 ? update(votes_sum: votes_sum - 1) : update(votes_sum: votes_sum + 1)
   end
+
+  def update_votes
+    update(votes_sum: votes.sum(:vote_value))
+  end
+
 end

@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
   include_context 'users'
   let(:question) { create(:question, user_id: user.id) }
   let(:question2) { create(:question, user_id: user.id) }
-  let!(:vote) { create(:vote, user_id: user.id, votable: question) }
+  let!(:vote) { create(:vote, user_id: user.id, votable: question, vote_value: 1) }
 
   it { should have_many(:answers) }
   it { should have_many(:questions) }

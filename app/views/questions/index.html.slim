@@ -12,7 +12,7 @@ section.all-questions.container
             |Вопрос пользователя #{question.user.email}
             .question_votes-wrapper
               span.current-question-answer-votes
-                = render 'questions/vote',question: question
+                = render 'votes/vote',votable: question
           h2.all-questions__current-question-title
             = link_to question, class: 'all-questions__current-question-title-link'
               | #{question.title}

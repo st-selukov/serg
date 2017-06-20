@@ -19,4 +19,12 @@ module AcceptanceHelper
     fill_in 'user[password]', with: user.password
     click_on 'Войти'
   end
+
+  def current_votable_path(votable)
+    if votable == 'question'
+      visit question_path(parent)
+    elsif votable == 'answer'
+      visit question_path(parent.question)
+    end
+  end
 end

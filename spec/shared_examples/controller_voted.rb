@@ -14,20 +14,6 @@ shared_examples_for 'ControllerVoted' do
 
       expect(parent.votes_sum).to eq 1
     end
-
-    it 'it change parent user reputation' do
-      put :vote_up, params: { id: parent.id }, format: :json
-      parent.user.reload
-
-      expect(parent.user.reputation).to eq 30
-    end
-
-    it 'it change voted user reputation' do
-      put :vote_up, params: { id: parent.id }, format: :json
-      @user.reload
-
-      expect(@user.reputation).to eq 27
-    end
   end
 
   describe 'PUT #vote_down' do
@@ -42,13 +28,6 @@ shared_examples_for 'ControllerVoted' do
       parent.reload
 
       expect(parent.votes_sum).to eq(-1)
-    end
-
-    it 'it change parent user reputation' do
-      put :vote_down, params: { id: parent.id }, format: :json
-      parent.user.reload
-
-      expect(parent.user.reputation).to eq 23
     end
   end
 
