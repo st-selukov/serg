@@ -4,27 +4,22 @@ module Voted
   included do
     before_action :find_parent, only: [:vote_up, :vote_down, :destroy_vote]
     before_action :check_before_voting, only: [:vote_up, :vote_down, :destroy_vote]
+    before_action :check_user_before_voiting, only: [:vote_up, :vote_down]
   end
 
   def vote_up
-    unless current_user.votable_owner?(@parent)
-      @parent.vote_up(current_user)
-      publish_vote
-    end
+    @parent.vote_up(current_user)
+    publish_vote
   end
 
   def vote_down
-    unless current_user.votable_owner?(@parent)
-      @parent.vote_down(current_user)
-      publish_vote
-    end
+    @parent.vote_down(current_user)
+    publish_vote
   end
 
   def destroy_vote
-    unless current_user.votable_owner?(@parent)
-      @parent.destroy_vote(current_user)
-      publish_vote
-    end
+    @parent.destroy_vote(current_user)
+    publish_vote
   end
 
   private
@@ -36,7 +31,21 @@ module Voted
 
   def check_before_voting
     unless user_signed_in? && current_user.have_reputation_for_voting?
-      render json: 'У вас не хватает репутации для этого', status: :unprocesable_entity
+      render json: [@parent, @parent.class.name.downcase,
+                    'У вас не хватает репутации для этого'],
+             status: :forbidden
+    end
+  end
+
+  def check_user_before_voiting
+    if current_user.votable_owner?(@parent)
+      render json: [@parent, @parent.class.name.downcase,
+                    'Нельзя голосовать за себя'],
+             status: :forbidden
+    elsif current_user.voted?(@parent)
+      render json: [@parent, @parent.class.name.downcase,
+                    'Вы уже голосовали'],
+             status: :forbidden
     end
   end
 end

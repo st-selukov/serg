@@ -21,12 +21,12 @@
 }
 
 .all-questions_current-question {
+  position: relative;
   width: 100%;
   background-color: rgb(255, 255, 255);
   padding: 30px 30px 20px 150px;
   margin-bottom: 30px;
-  position: relative;
-}
+ }
 
 .all-questions_current-question__user-avatar {
   position: absolute;
