@@ -27,5 +27,4 @@ votes_error_handler = (event) ->
   error = event.detail[0][2]
   modal_window = $("##{votable}-" + votable_id + "-modal-window")
   modal_window.show().html(error)
-  modal_window.delay(1000).fadeOut(1000)
-
+  modal_window.delay(500).fadeOut(300)

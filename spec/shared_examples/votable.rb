@@ -10,12 +10,36 @@ shared_examples_for 'Votable' do
       expect(parent.votes_sum).to eq(1)
     end
 
+    it 'update votable owner reputation' do
+      parent.user.update(reputation: 25)
+      parent.vote_up(user2)
+      parent.reload
+
+      expect(parent.user.reputation).to eq(30)
+    end
+
+    it 'update voter user reputation' do
+      user2.update(reputation: 25)
+      parent.vote_up(user2)
+      parent.reload
+
+      expect(user2.reputation).to eq(26)
+    end
+
     it 'create new vote with value -1' do
       parent.vote_down(user2)
       parent.reload
-
       expect(parent.votes_sum).to eq(-1)
     end
+
+    it 'update votable owner reputation for vote_up' do
+      parent.user.update(reputation: 25)
+      parent.vote_down(user2)
+      parent.reload
+
+      expect(parent.user.reputation).to eq(23)
+    end
+
   end
 
   describe 'destroy vote' do
