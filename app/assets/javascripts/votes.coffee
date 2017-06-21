@@ -1,10 +1,5 @@
 ready = ->
-  $('.vote-up-link').on 'ajax:success', (e, xhr, data) ->
-      votes_handler(e)
-    .on 'ajax:error', (e) ->
-      votes_error_handler(e)
-
-  $('.vote-down-link').on 'ajax:success', (e) ->
+  $('.vote-up-link, .vote-down-link').on 'ajax:success', (e, xhr, data) ->
       votes_handler(e)
     .on 'ajax:error', (e) ->
       votes_error_handler(e)
