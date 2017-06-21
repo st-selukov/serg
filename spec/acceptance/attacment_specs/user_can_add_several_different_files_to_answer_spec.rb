@@ -1,8 +1,7 @@
 require_relative '../features_helper'
 
 feature 'Add attachment to answer' do
-
-  given(:user) { create(:user) }
+  include_context 'users'
   given(:question) { create(:question, user_id: user.id) }
 
   background do

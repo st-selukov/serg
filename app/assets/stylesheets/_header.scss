@@ -1,5 +1,4 @@
 @import 'susy';
-@import 'compass';
 @import 'font-awesome';
 
 .container {
@@ -38,7 +37,7 @@
 
   & ul {
     width: 100%;
-    @include display-flex();
+    display: flex;
     list-style: none;
     line-height: 40px;
   }

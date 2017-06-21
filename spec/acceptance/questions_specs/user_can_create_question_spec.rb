@@ -3,8 +3,7 @@ require_relative '../features_helper'
 feature 'Create Question', %q{
   To get an answer, an authenticated user can ask a question
 } do
-
-  given!(:user) {create(:user)}
+  include_context 'users'
   given!(:questions) {create_list(:question, 2, user: user)}
 
   scenario 'authenticated user can see questions list' do

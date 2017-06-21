@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AnswersController, type: :controller do
-  let!(:user) { create(:user) }
+  include_context 'controllers'
   let(:question) { create(:question, user_id: user.id) }
   let!(:answer) { create(:answer, question_id: question.id, user_id: user.id) }
   let!(:answer2) { create(:answer, question_id: question.id, user_id: user.id) }
@@ -91,4 +91,7 @@ RSpec.describe AnswersController, type: :controller do
       end
     end
   end
+
+  let(:parent) { create(:answer, question: question, user: user2) }
+  it_behaves_like 'ControllerVoted'
 end

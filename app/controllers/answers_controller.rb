@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  include Voted
   before_action :authenticate_user!
   before_action :load_question, only: [:create]
   before_action :load_answer, only: [:update, :destroy, :best_answer]
@@ -32,7 +33,7 @@ class AnswersController < ApplicationController
       @answer.set_best
       redirect_to @answer.question
     else
-      render status: :forbidden
+      head :forbidden
     end
   end
 

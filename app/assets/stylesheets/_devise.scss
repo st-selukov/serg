@@ -1,12 +1,12 @@
 @import "header";
 
 .sign-up-in-cont {
-    @include display-flex();
+    display: flex;
 }
 
 .sign-up-in_form {
-  @include display-flex();
-  @include flex-direction(column);
+  display: flex;
+  flex-direction: column;
   margin: 100px auto;
 
   h2 {
@@ -32,3 +32,14 @@
  }
 }
 
+.user-short-info {
+
+  text-align: center;
+  margin: 30px auto 0;
+
+  p {
+    padding: 5px 0;
+    font-size: 20px;
+    color: red;
+  }
+}

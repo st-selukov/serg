@@ -1,8 +1,7 @@
 require_relative '../features_helper'
 
 feature 'Add files to question' do
-
-  given(:user) { create(:user) }
+  include_context 'users'
 
   background do
     sign_in(user)

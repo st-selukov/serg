@@ -1,0 +1,18 @@
+-votable_link = votable.class.name.downcase
+
+= link_to polymorphic_path([:vote_up, votable]) , remote: true,
+        class: 'vote-up-link', method: :put, title: 'Нравится', rel: 'tooltip'
+  i.fa.fa-thumbs-up aria-hidden="true"
+
+= link_to polymorphic_path([:vote_down, votable]) , remote: true,
+        class: 'vote-down-link', method: :put, title: 'Не нравится', rel: 'tooltip'
+  i.fa.fa-thumbs-down aria-hidden="true"
+
+= link_to polymorphic_path([:destroy_vote, votable]) , remote: true,
+        class: 'vote-reset-link', method: :delete, title: 'Удалить свой голос', rel: 'tooltip'
+  i.fa.fa-trash aria-hidden="true"
+
+span.curren-question-answer-count-votes id="#{votable_link}-#{votable.id}-count-votes"
+  = votable.votes_sum
+
+.vote-error-window-modal id="#{votable_link}-#{votable.id}-modal-window"

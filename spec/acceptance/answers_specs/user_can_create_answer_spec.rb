@@ -1,8 +1,7 @@
 require_relative '../features_helper'
 
 feature 'Create Answer', %q{User  can create answers for questions} do
-
-  given!(:user) { create(:user) }
+  include_context 'users'
   given!(:question) { create(:question, user: user) }
 
   scenario 'authenticated user try create answer', js: true do

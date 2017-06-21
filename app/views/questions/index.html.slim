@@ -8,6 +8,11 @@ section.all-questions.container
           .all-questions_current-question__user-avatar
             = link_to
               = image_tag('default-avatar.png')
+          .question-user-title
+            |Вопрос пользователя #{question.user.email}
+            .question_votes-wrapper
+              span.current-question-answer-votes
+                = render 'votes/vote',votable: question
           h2.all-questions__current-question-title
             = link_to question, class: 'all-questions__current-question-title-link'
               | #{question.title}

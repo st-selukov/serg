@@ -1,8 +1,7 @@
 require_relative '../features_helper'
 
 feature 'User Sign In', %q{User can signed site to use it} do
-
-  given(:user) { create(:user) }
+  include_context 'users'
 
   scenario 'registered user try to signed' do
     sign_in(user)

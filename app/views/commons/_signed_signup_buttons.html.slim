@@ -10,3 +10,10 @@ asside.user-sing-in-up-asside
       = link_to new_user_session_path
         | Войти на сайт
   = render 'layouts/messages'
+
+  -if user_signed_in?
+    .user-short-info
+      p Ваш email
+      p = current_user.email
+      p Ваша репутация
+      p = current_user.reputation

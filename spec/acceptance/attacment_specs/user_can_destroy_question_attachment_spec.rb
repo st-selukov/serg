@@ -1,9 +1,7 @@
 require_relative '../features_helper'
 
 feature 'destroy question attachment' do
-
-  given(:user) { create(:user) }
-  given(:user2) { create(:user) }
+  include_context 'users'
   given!(:question) { create(:question, user: user) }
   given!(:attachment) { create(:attachment, attachable: question) }
 

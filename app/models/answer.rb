@@ -1,13 +1,15 @@
 class Answer < ApplicationRecord
+  include Attachable
+  include Votable
+  include Constants
 
   default_scope { order ('best DESC , created_at ASC') }
 
   belongs_to :question
   belongs_to :user
-  has_many :attachments, as: :attachable, dependent: :destroy
   validates :body, presence: true
 
-  accepts_nested_attributes_for :attachments, reject_if: :not_have_attachment
+  after_save :up_owner_reputation
 
   def set_best
     Answer.transaction do
@@ -19,7 +21,7 @@ class Answer < ApplicationRecord
     end
   end
 
-  def not_have_attachment(attributes)
-    attributes['file'].blank?
+  def up_owner_reputation
+    user.change_reputation(YOU_PLACED_QUESTION_OR_ANSWER)
   end
 end

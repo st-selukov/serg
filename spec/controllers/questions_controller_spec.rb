@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
-
-  let!(:user) { create(:user) }
-  let(:user2) { create(:user) }
+  include_context 'controllers'
   let(:question) { create(:question, user_id: user.id) }
+  let(:parent) { create(:question, user_id: user2.id) }
 
   describe 'GET #index' do
 
@@ -122,4 +121,6 @@ RSpec.describe QuestionsController, type: :controller do
       end
     end
   end
+
+  it_behaves_like 'ControllerVoted'
 end
