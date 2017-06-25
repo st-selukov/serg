@@ -3,6 +3,7 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :load_question, only: [:create]
   before_action :load_answer, only: [:update, :destroy, :best_answer]
+  after_action :publish_answer, only: [:create]
 
   def create
     @answer = @question.answers.create(answer_params.merge(user: current_user))
@@ -48,6 +49,11 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:body,  attachments_attributes: [:file])
+    params.require(:answer).permit(:body, attachments_attributes: [:file])
+  end
+
+  def publish_answer
+    return if @answer.errors.any?
+    ActionCable.server.broadcast('answers', [@answer, @answer.user.id, @answer.user.email])
   end
 end

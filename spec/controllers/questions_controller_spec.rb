@@ -38,7 +38,7 @@ RSpec.describe QuestionsController, type: :controller do
       expect(assigns(:answer).attachments.first).to be_a_new(Attachment)
     end
 
-    it 'render show template' do
+    it 'render show templates' do
       expect(response).to render_template :show
     end
   end
@@ -56,7 +56,7 @@ RSpec.describe QuestionsController, type: :controller do
       expect(assigns(:question).attachments.first).to be_a_new(Attachment)
     end
 
-    it 'render view template -new-' do
+    it 'render view templates -new-' do
       expect(response).to render_template :new
     end
   end
@@ -106,7 +106,7 @@ RSpec.describe QuestionsController, type: :controller do
         expect { delete :destroy, params: { id: question } }.to change(Question, :count).by(-1)
       end
 
-      it 'redirect to index template' do
+      it 'redirect to index templates' do
         delete :destroy, params: { id: question }
         expect(response).to redirect_to questions_path
       end

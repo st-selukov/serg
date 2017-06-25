@@ -1,0 +1,21 @@
+article.single-question-answers__current_answer id="current_answer-#{@[0].id}"
+  .single-question__user-avatar
+    a href="answers/#{@[0].id}"
+      img src="/assets/default-avatar.png" alt="Default avatar"
+
+  .single-question-answers__current-answer-wrapper_for-arrtibutes
+     span.single-question-answers__current-answer_best_answer
+       a rel="nofollow" data-method="post" href="/answers/#{@[0].id}/best_answer"
+         |Лучший ответ
+         i.material-icons.md-18
+           |favorite_border
+
+     span.current-question-answer-votes
+       ==JST["templates/vote"]({obj: @[0], obj_id: @[0].id, single: 'answer', plural: "answers"})
+  .single-question-answers__current-answer-title_wrapper
+    h2.single-question-answers__current-answer-title
+      |Ответ пользователя #{@[1]}
+
+  .single-question-answers__current-answer-body
+    p id="answer-#{@[0].id}"
+      |#{@[0].body}
