@@ -1,11 +1,11 @@
 ready = ->
-  $('.vote-up-link, .vote-down-link').on 'ajax:success', (e, xhr, data) ->
-      votes_handler(e)
-    .on 'ajax:error', (e) ->
-      votes_error_handler(e)
+  $('.vote-up-link, .vote-down-link').on 'ajax:success', (e) ->
+    votes_handler(e)
+  .on 'ajax:error', (e) ->
+    votes_error_handler(e)
 
   $('.vote-reset-link').on 'ajax:success', (e) ->
-      votes_handler(e)
+    votes_handler(e)
 
 $(document).ready(ready)
 $(document).on('DOMNodeInserted', ready)
