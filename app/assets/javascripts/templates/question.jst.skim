@@ -3,7 +3,7 @@ article.all-questions_current-question
     a href="questions/#{@[0].id}"
       img src="/assets/default-avatar.png" alt="Default avatar"
   .question-user-title
-    | Вопрос пользователя #{@[2]}
+    | Вопрос пользователя #{@[1].email}
     .question_votes-wrapper
       span.current-question-answer-votes
         ==JST["templates/vote"]({obj: @[0], obj_id: @[0].id, single: 'question', plural: "questions"})
@@ -18,7 +18,7 @@ article.all-questions_current-question
         i.material-icons.md-18
           |comment
         | 0 Ответов
-    -if gon.user_id == @[1]
+    -if gon.user_id == @[1].id
       span.all-questions__current-question-answer-destroy
         a rel="nofollow" data-method="delete" href="questions/#{@[0].id}"
           i.material-icons.md-18

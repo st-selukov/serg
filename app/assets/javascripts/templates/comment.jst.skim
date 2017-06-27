@@ -1,0 +1,4 @@
+li id="comment-#{@[0].id}"
+  p.comment-user = @[1]
+  p.comment-text
+    |#{@[0].body}

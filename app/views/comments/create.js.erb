@@ -1,0 +1,11 @@
+<% if @comment.errors.present? %>
+  <% @comment.errors.full_messages.each do |message| %>
+    $("#<%= @comment.commentable.id %>-comment-errors").html(
+               "<%= j message.split(' ')[1..-1].join(' ') %>"
+  );
+  <% end %>
+<% else %>
+  $("#<%= @comment.commentable.id %>-commentable-list").append("<%= j render @comment %>");
+  $("#<%= @comment.commentable.id %>-comment-body").val("")
+  $('.comment-form-wrapper').hide()
+<% end %>

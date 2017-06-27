@@ -1,0 +1,66 @@
+.single-question-comments {
+  display: flex;
+  flex-direction: column;
+}
+
+.commentable-list-title {
+  font-size: 14px;
+  padding: 10px 0;
+  color: #848991;
+}
+
+.commentable-list {
+  list-style: none;
+  font-size: 12px;
+
+  li {
+    padding: 5px 0;
+    border-bottom: 1px solid rgb(222, 222, 222);
+
+    p {
+      padding: 5px 0;
+    }
+  }
+}
+.comment-user {
+  color: #848991;
+}
+
+.open-comments {
+  color: rgb(255, 115, 97);
+  cursor: pointer;
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+.comment-form-wrapper {
+  display: none;
+}
+
+.new_comment {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5px;
+
+  textarea {
+    font-size: 12px;
+  }
+}
+
+.add-new-comment-button {
+  margin-top: 5px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 2px;
+
+  &:hover {
+    background: rgb(255, 115, 97);
+    color: black;
+  }
+}
+
+.comment-errors {
+  color: red;
+  padding: 10px 0;
+  font-size: 12px;
+}

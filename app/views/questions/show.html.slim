@@ -37,6 +37,8 @@ section.single-question-show.container
               |mode_edit
             | Редактировать вопрос
 
+      = render 'comments/comments', parent: @question
+
     .single-question-answers__all-answers
       h2.single-question-answers__all-answers-title
         | Ответы  на вопрос

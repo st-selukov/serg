@@ -2,14 +2,19 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+
   concern :votable do
     put :vote_up, on: :member
     put :vote_down, on: :member
     delete :destroy_vote, on: :member
   end
 
-  resources :questions, concerns: [:votable] do
-    resources :answers, concerns: [:votable], shallow: true do
+  concern :commentable do
+    resources :comments
+  end
+
+  resources :questions, concerns: [:votable, :commentable] do
+    resources :answers, concerns: [:votable, :commentable], shallow: true do
       post :best_answer, on: :member
     end
   end

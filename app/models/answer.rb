@@ -1,6 +1,7 @@
 class Answer < ApplicationRecord
   include Attachable
   include Votable
+  include Commentable
   include Constants
 
   default_scope { order ('best DESC , created_at ASC') }

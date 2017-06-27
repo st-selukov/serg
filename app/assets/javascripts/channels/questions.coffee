@@ -9,4 +9,5 @@ $ ->
 
     received: (data) ->
       # Called when there's incoming data on the websocket for this channel
-      questionlist.prepend(JST["templates/question"](data))
+      if data[0].user_id != gon.user_id
+        questionlist.prepend(JST["templates/question"](data))

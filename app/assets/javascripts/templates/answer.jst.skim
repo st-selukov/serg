@@ -14,8 +14,14 @@ article.single-question-answers__current_answer id="current_answer-#{@[0].id}"
        ==JST["templates/vote"]({obj: @[0], obj_id: @[0].id, single: 'answer', plural: "answers"})
   .single-question-answers__current-answer-title_wrapper
     h2.single-question-answers__current-answer-title
-      |Ответ пользователя #{@[1]}
+      |Ответ пользователя #{@[1].email}
 
   .single-question-answers__current-answer-body
     p id="answer-#{@[0].id}"
       |#{@[0].body}
+  .single-question-attachments-files-wrapper
+    -if @[2].length > 0
+      p
+        |Прикрепленные файлы
+      ul.single-question-attached-files-list
+        ==JST["templates/attachment"]({obj: @[2][0], user_id: @[1].id})

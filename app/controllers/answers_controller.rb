@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   include Voted
+
   before_action :authenticate_user!
   before_action :load_question, only: [:create]
   before_action :load_answer, only: [:update, :destroy, :best_answer]
@@ -54,6 +55,6 @@ class AnswersController < ApplicationController
 
   def publish_answer
     return if @answer.errors.any?
-    ActionCable.server.broadcast('answers', [@answer, @answer.user.id, @answer.user.email])
+    ActionCable.server.broadcast('answers', [@answer, @answer.user, @answer.attachments])
   end
 end
