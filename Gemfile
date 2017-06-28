@@ -32,6 +32,7 @@ gem 'carrierwave'
 gem 'cocoon'
 gem 'gon'
 gem 'skim'
+gem 'redis'
 # gem 'remotipart'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
