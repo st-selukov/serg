@@ -1,27 +1,26 @@
-article.single-question-answers__current_answer id="current_answer-#{@[0].id}"
+article.single-question-answers__current_answer id="current_answer-#{@answer.id}"
   .single-question__user-avatar
-    a href="answers/#{@[0].id}"
+    a href="answers/#{@answer.id}"
       img src="/assets/default-avatar.png" alt="Default avatar"
 
   .single-question-answers__current-answer-wrapper_for-arrtibutes
      span.single-question-answers__current-answer_best_answer
-       a rel="nofollow" data-method="post" href="/answers/#{@[0].id}/best_answer"
+       a rel="nofollow" data-method="post" href="/answers/#{@answer.id}/best_answer"
          |Лучший ответ
          i.material-icons.md-18
            |favorite_border
 
      span.current-question-answer-votes
-       ==JST["templates/vote"]({obj: @[0], obj_id: @[0].id, single: 'answer', plural: "answers"})
+       ==JST["templates/vote"]({obj_id: @answer.id, single: 'answer', plural: "answers"})
   .single-question-answers__current-answer-title_wrapper
     h2.single-question-answers__current-answer-title
-      |Ответ пользователя #{@[1].email}
+      |Ответ пользователя #{@answer_user.email}
 
   .single-question-answers__current-answer-body
-    p id="answer-#{@[0].id}"
-      |#{@[0].body}
+    p id="answer-#{@answer.id}"
+      |#{@answer.body}
   .single-question-attachments-files-wrapper
-    -if @[2].length > 0
+    -if @attachments.length > 0
       p
         |Прикрепленные файлы
-      ul.single-question-attached-files-list
-        ==JST["templates/attachment"]({obj: @[2][0], user_id: @[1].id})
+      ul.single-question-attached-files-list id="answer-attached-list-#{@answer.id}"

@@ -1,4 +1,4 @@
 li.attachment-file id="attachment-file-#{@obj.id}"
   i.fa.fa-file aria-hidden="true"
   a href="#{@obj.file.url}"
-   |#{@obj.file.name}"
+    |"#{@obj.file.name}"

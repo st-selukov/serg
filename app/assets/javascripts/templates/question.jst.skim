@@ -1,31 +1,31 @@
 article.all-questions_current-question
   .all-questions_current-question__user-avatar
-    a href="questions/#{@[0].id}"
+    a href="questions/#{@question.id}"
       img src="/assets/default-avatar.png" alt="Default avatar"
   .question-user-title
-    | Вопрос пользователя #{@[1].email}
+    | Вопрос пользователя #{@question_user.email}
     .question_votes-wrapper
       span.current-question-answer-votes
-        ==JST["templates/vote"]({obj: @[0], obj_id: @[0].id, single: 'question', plural: "questions"})
+        ==JST["templates/vote"]({obj_id: @question.id, single: 'question', plural: "questions"})
   h2.all-questions__current-question-title
     a.all-questions__current-question-title-link href="questions/#{@id}"
-      |#{@[0].title}
+      |#{@question.title}
   .all-questions__current-question-body
     p
-      |#{@[0].body}
+      |#{@question.body}
     span.all-questions__current-question-answers-count
-      a href="questions/#{@[0].id}"
+      a href="questions/#{@question.id}"
         i.material-icons.md-18
           |comment
         | 0 Ответов
-    -if gon.user_id == @[1].id
+    -if gon.user_id == @question_user.id
       span.all-questions__current-question-answer-destroy
-        a rel="nofollow" data-method="delete" href="questions/#{@[0].id}"
+        a rel="nofollow" data-method="delete" href="questions/#{@question.id}"
           i.material-icons.md-18
             |delete
           | Удалить вопрос
       span.all-questions__current-question-answer-edit
-        a href="questions/#{@[0].id}/edit"
+        a href="questions/#{@question.id}/edit"
           i.material-icons.md-18
             |mode_edit
           | Редактировать вопрос

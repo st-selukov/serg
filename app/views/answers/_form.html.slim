@@ -1,8 +1,9 @@
-= form_for [@question, @answer], remote: true, data_method: :post, class: 'add-answer-form' do |f|
+= form_for [@question, @answer], remote: true, method: :post,
+        class: 'add-answer-form' do |f|
   .all-form-inputs-errors
   .answer-desk
     = f.label 'Текст ответа'
-    = f.text_area :body , id: 'add-answer-body'
+    = f.text_area :body, id: 'add-answer-body'
     = render 'attachments/attachments_added', f: f, obj: @answer
   .add-answer-form-subm
     = f.button 'Разместить ответ'
