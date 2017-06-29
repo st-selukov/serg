@@ -1,0 +1,13 @@
+a.vote-up-link title="Нравится" rel="tooltip nofollow" data-remote="true" data-method="put" href="/#{@plural}/#{@obj_id}/vote_up"
+  i.fa.fa-thumbs-up aria-hidden="true"
+
+a.vote-down-link title="Не нравится" rel="tooltip nofollow" data-remote="true" data-method="put" href="/#{@plural}/#{@obj_id}/vote_down"
+  i.fa.fa-thumbs-down aria-hidden="true"
+
+a.vote-reset-link title="Удалить свой голос" rel="tooltip nofollow" data-remote="true" data-method="delete" href="/#{@plural}/#{@obj_id}/destroy_vote"
+  i.fa.fa-trash aria-hidden="true"
+
+span.curren-question-answer-count-votes id="#{@single}-#{@obj_id}-count-votes"
+  |0
+
+.vote-error-window-modal id="#{@single}-#{@obj_id}-modal-window"

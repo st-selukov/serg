@@ -16,6 +16,10 @@ ru:
                 too_short: "Название вопроса должно быть не менее 5 символов и не более 140 символов"
               body:
                 blank: "Нет описания вопроса"
+          comment:
+            attributes:
+              body:
+                blank: "Не заполнен текст комментария"
           answer:
             attributes:
               body:

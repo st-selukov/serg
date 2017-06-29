@@ -14,16 +14,8 @@ feature 'Create Question', %q{
   end
 
   scenario 'authenticated user try created question' do
-    visit questions_path
     sign_in(user)
-
-    within('.ask-question') do
-      click_on 'Задать вопрос'
-    end
-
-    fill_in 'question[title]', with: 'Test question'
-    fill_in 'question[body]', with: 'Test Text'
-    click_on 'Разместить вопрос на сайте'
+    create_valid_question
 
     expect(page).to have_content 'Test Text'
   end
@@ -53,5 +45,23 @@ feature 'Create Question', %q{
     end
 
     expect(current_path).to eq new_user_session_path
+  end
+
+  context 'multiple session' do
+    scenario 'question appear on another user on create', js: true do
+      Capybara.using_session(user2) do
+        sign_in(user2)
+        visit questions_path
+      end
+
+      Capybara.using_session(user) do
+        sign_in(user)
+        create_valid_question
+      end
+
+      Capybara.using_session(user2) do
+        expect(page).to have_content 'Test Text'
+      end
+    end
   end
 end

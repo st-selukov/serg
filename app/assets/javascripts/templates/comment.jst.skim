@@ -1,0 +1,4 @@
+li id="comment-#{@comment.id}"
+  p.comment-user = @comment_user.email
+  p.comment-text
+    |#{@comment.body}

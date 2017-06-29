@@ -13,6 +13,8 @@ RSpec.configure do |config|
     Capybara::Poltergeist::Driver.new(app, options)
   end
 
+  Capybara.server = :puma
+
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end

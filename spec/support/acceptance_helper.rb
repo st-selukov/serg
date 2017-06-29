@@ -20,6 +20,60 @@ module AcceptanceHelper
     click_on 'Войти'
   end
 
+  def create_valid_question
+    visit questions_path
+    within('.ask-question') do
+      click_on 'Задать вопрос'
+    end
+
+    fill_in 'question[title]', with: 'Test question'
+    fill_in 'question[body]', with: 'Test Text'
+    click_on 'Разместить вопрос на сайте'
+  end
+
+  def create_valid_answer(question)
+    sign_in(user)
+    visit question_path(question)
+    fill_in  'answer[body]', with: 'Test Answer'
+    click_on 'Разместить ответ'
+  end
+
+  def create_valid_question_comment(question)
+    sign_in(user)
+    visit question_path(question)
+    find('.open-comments').click
+    fill_in 'comment[body]', with: 'Test Comment'
+    find('.add-new-comment-button').click
+  end
+
+  def create_valid_answer_comment(question)
+    sign_in(user)
+    visit question_path(question)
+    within '.single-question-answers__current_answer' do
+      find('.open-comments').click
+    end
+    fill_in 'comment[body]', with: 'Test Comment'
+    find('.add-new-comment-button').click
+  end
+
+  def create_invalid_question_comment(question)
+    sign_in(user)
+    visit question_path(question)
+    find('.open-comments').click
+    fill_in 'comment[body]', with: ''
+    find('.add-new-comment-button').click
+  end
+
+  def create_invalid_answer_comment(question)
+    sign_in(user)
+    visit question_path(question)
+    within '.single-question-answers__current_answer' do
+      find('.open-comments').click
+    end
+    fill_in 'comment[body]', with: ''
+    find('.add-new-comment-button').click
+  end
+
   def current_votable_path(votable)
     if votable == 'question'
       visit question_path(parent)
