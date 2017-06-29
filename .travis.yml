@@ -13,3 +13,6 @@ script:
   - bundle exec rails db:setup
   - bundle exec rails db:test:prepare
   - bundle exec rspec spec
+machine:
+  pre:
+    - sudo curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1
