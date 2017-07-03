@@ -49,11 +49,6 @@ RSpec.describe AnswersController, type: :controller do
       it 'not destroy answer, If user is not the owner answer', js: true do
         expect { delete :destroy, params: { id: answer, format: :js } }.to_not change(Answer, :count)
       end
-
-      it 'not destroy answer, If user is not the owner answer', js: true do
-        delete :destroy, params: { id: answer, format: :js }
-        expect(response).to have_http_status(403)
-      end
     end
   end
 

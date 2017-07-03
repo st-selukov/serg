@@ -5,8 +5,10 @@ class QuestionsController < ApplicationController
   before_action :load_question, only: [:show, :edit, :update, :destroy]
   after_action :publish_question, only: [:create]
 
+  respond_to :html
+
   def index
-    @questions = Question.all
+    respond_with @questions = Question.all
   end
 
   def new
@@ -29,25 +31,15 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question.attachments.build
   end
 
   def update
-    if current_user.author_of?(@question)
-      @question.update(question_params)
-      redirect_to @question
-    else
-      redirect_to root_url
-    end
+    @question.update(question_params) if current_user.author_of?(@question)
+    respond_with @question, location: @question
   end
 
   def destroy
-    if current_user.author_of?(@question)
-      @question.destroy
-      redirect_to questions_path
-    else
-      redirect_to root_url
-    end
+    respond_with @question.destroy if current_user.author_of?(@question)
   end
 
   private

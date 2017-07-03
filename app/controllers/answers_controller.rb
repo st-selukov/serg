@@ -6,37 +6,27 @@ class AnswersController < ApplicationController
   before_action :load_answer, only: [:update, :destroy, :best_answer]
   after_action :publish_answer, only: [:create]
 
+  respond_to :js, :json
+
   def create
-    @answer = @question.answers.create(answer_params.merge(user: current_user))
+    respond_with @answer = @question.answers.create(answer_params.merge(user: current_user))
   end
 
   def edit
   end
 
   def update
-    if current_user.author_of?(@answer)
-      @answer.update(answer_params)
-      @question = @answer.question
-    else
-      head :forbidden
-    end
+    @answer.update(answer_params) if current_user.author_of?(@answer)
+    @question = @answer.question
   end
 
   def destroy
-    if current_user.author_of?(@answer)
-      @answer.destroy
-    else
-      head :forbidden
-    end
+    respond_with @answer.destroy if current_user.author_of?(@answer)
   end
 
   def best_answer
-    if current_user.author_of?(@answer.question)
-      @answer.set_best
-      redirect_to @answer.question
-    else
-      head :forbidden
-    end
+    @answer.set_best if current_user.author_of?(@answer.question)
+    respond_with @answer, location: @answer.question
   end
 
   private
