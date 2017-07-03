@@ -1,12 +1,10 @@
 class AttachmentsController < ApplicationController
   before_action :find_attachment, only: [:destroy]
 
+  respond_to :js
+
   def destroy
-    if current_user.author_of?(@attachment.attachable)
-      @attachment.destroy
-    else
-      head :forbidden
-    end
+    respond_with @attachment.destroy if current_user.author_of?(@attachment.attachable)
   end
 
   private
