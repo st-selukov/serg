@@ -34,6 +34,11 @@ gem 'gon'
 gem 'skim'
 gem 'redis'
 gem 'responders', '~> 2.0'
+gem 'figaro'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+
 # gem 'remotipart'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

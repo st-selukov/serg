@@ -20,3 +20,4 @@
 config/database.yml
 .idea
 /public/uploads/
+/config/application.yml
