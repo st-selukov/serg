@@ -9,6 +9,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def twitter
   end
 
+  def auth_confirm_email
+  end
+
   private
 
   def set_auth
@@ -24,6 +27,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, event: :authentication
       set_flash_message :notice, :success,
                         kind: params[:action].capitalize if is_navigational_format?
+    else
+      render 'omniauth_callbacks/confirm_email', locals: { auth: @auth }
     end
   end
 end

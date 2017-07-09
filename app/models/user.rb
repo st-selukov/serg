@@ -1,11 +1,14 @@
 class User < ApplicationRecord
+  TEMP_EMAIL_PREFIX = 'change@me'
+  TEMP_EMAIL_REGEX = /\Achange@me/
+
   has_many :questions
   has_many :answers
   has_many :votes, dependent: :destroy
-  has_many :authorizations
+  has_many :authorizations, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :twitter]
 
@@ -34,12 +37,13 @@ class User < ApplicationRecord
     email = auth.info[:email] unless auth.info.blank?
     user = User.where(email: email).first
     if user
+      user.send_confirmation_instructions
       user.create_authorization(auth)
     else
       password = Devise.friendly_token[0, 20]
-      user = User.create!(email: email, password: password, password_confirmation: password)
-      # user.skip_confirmation! if auth.provider == 'facebook'
-      # return nil unless user.save
+      user = User.new(email: email, password: password, password_confirmation: password)
+      user.skip_confirmation!
+      return nil unless user.save
       user.create_authorization(auth)
     end
     user

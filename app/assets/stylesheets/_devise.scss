@@ -43,3 +43,24 @@
     color: red;
   }
 }
+
+.confirmation-email {
+  text-align: center;
+  padding-top: 20px;
+
+  h2 {
+    font-size: 14px;
+  }
+}
+
+.confirm-auth-email-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+  padding-top: 10px;
+
+  input {
+    margin-top: 10px;
+  }
+}
