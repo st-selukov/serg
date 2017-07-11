@@ -16,13 +16,24 @@ feature 'Sign in with oauth providers' do
     mock_twitter
     visit new_user_session_path
     click_on 'Войти через Twitter'
-    fill_in 'auth[info][email]', with: 'test1@test.com'
+    fill_in 'auth[info][email]', with: 'test@test.com'
     click_on 'Отправить'
 
-    open_email 'test1@test.com'
+    open_email 'test@test.com'
     current_email.click_link 'Confirm my account'
     clear_emails
 
+    click_on 'Войти через Twitter'
+
+    expect(page).to have_content 'Вход в систему выполнен с учётной записью из Twitter.'
+  end
+
+  given(:twitter_user){create(:user, email: 'test1@test.com', confirmed_at: Time.now)}
+
+  scenario 'repeated login via Twitter, the user already exists in the system ' do
+    Authorization.create(user: twitter_user, provider: 'twitter', uid: '1345678')
+    mock_twitter
+    visit new_user_session_path
     click_on 'Войти через Twitter'
 
     expect(page).to have_content 'Вход в систему выполнен с учётной записью из Twitter.'

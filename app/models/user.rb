@@ -34,7 +34,8 @@ class User < ApplicationRecord
     authorization = Authorization.where(provider: auth.provider, uid: auth.uid.to_s).first
     return authorization.user if authorization
 
-    email = auth.info[:email] unless auth.info.blank?
+    return if auth.info.blank?
+    email = auth.info[:email]
     user = User.where(email: email).first
 
     if user
@@ -46,13 +47,11 @@ class User < ApplicationRecord
       return nil unless user.save
       user.update(confirmed_at: nil)
       user.skip_confirmation! if auth.provider == 'facebook'
-      user.send_confirmation_instructions
       user.create_authorization(auth)
     end
 
     user
   end
-
 
   def create_authorization(auth)
     authorizations.create(provider: auth.provider, uid: auth.uid)
