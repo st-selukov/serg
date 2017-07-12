@@ -39,8 +39,9 @@ class User < ApplicationRecord
     user = User.where(email: email).first
 
     if user
+      user.update(confirmed_at: nil)
+      user.send_confirmation_instructions
       user.create_authorization(auth)
-      user.skip_confirmation!
     else
       password = Devise.friendly_token[0, 20]
       user = User.new(email: email, password: password, password_confirmation: password)

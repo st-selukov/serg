@@ -15,9 +15,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def set_auth_for_confirm
-    @auth = OmniAuth::AuthHash.new(provider: session[:provider],
-                                   uid: session[:uid],
-                                   info: {email: params[:auth][:info][:email]})
+    email = params[:auth][:info][:email]
+    @auth = OmniAuth::AuthHash.new(provider: session[:device_ouath_provider],
+                                   uid: session[:device_oauth_uid],
+                                   info: { email: email })
+    session.delete(:device_ouath_provider)
+    session.delete(:device_oauth_uid)
     signed_in_auth_provider
   end
 
@@ -32,8 +35,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message :notice, :success,
                         kind: params[:action].capitalize if is_navigational_format?
     else
-      session[:provider] = @auth.provider
-      session[:uid] = @auth.uid
+      session[:device_ouath_provider] = @auth.provider
+      session[:device_oauth_uid] = @auth.uid
       render 'omniauth_callbacks/confirm_email'
     end
   end
