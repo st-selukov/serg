@@ -129,7 +129,7 @@ module AcceptanceHelper
   def mock_twitter
     OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new(
         provider: 'twitter',
-        uid: '134567'
+        uid: '1345678'
     )
   end
 end
