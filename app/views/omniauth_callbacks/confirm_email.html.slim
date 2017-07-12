@@ -1,0 +1,7 @@
+.confirmation-email.container
+  h2
+    |Введите свой реальный email, на него придет письмо для подтверждения
+  =form_tag auth_confirm_email_path, method: :post, class: 'confirm-auth-email-form'
+    = label_tag 'Email'
+    = email_field 'auth[info]', :email
+    = submit_tag 'Отправить'
