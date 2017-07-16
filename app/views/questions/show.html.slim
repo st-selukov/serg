@@ -24,7 +24,7 @@ section.single-question-show.container
             -@question.attachments.each do |a|
               = render 'attachments/show_attachments', a: a, subject: @question
 
-      -if user_signed_in? && current_user.author_of?(@question)
+      -if policy(@question).update?
         span.all-questions__current-question-answer-destroy
           = link_to @question, method: :delete
             i.material-icons.md-18

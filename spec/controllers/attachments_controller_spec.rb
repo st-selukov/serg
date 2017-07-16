@@ -22,7 +22,8 @@ RSpec.describe AttachmentsController, type: :controller do
     context 'user not owner attachment' do
 
       it 'delete attachment' do
-        expect { delete :destroy, params: { id: attachment, format: :js } }.to_not change(Attachment, :count)
+        expect { delete :destroy, params: { id: attachment, format: :js } }.
+            to raise_error(Pundit::NotAuthorizedError)
       end
     end
   end

@@ -1,12 +1,14 @@
 require "application_responder"
 
 class ApplicationController < ActionController::Base
+  include Pundit
   self.responder = ApplicationResponder
   respond_to :html
 
   protect_from_forgery with: :exception
 
   before_action :gon_user, unless: :devise_controller?
+  # after_action :verify_authorized, unless: :devise_controller?
 
   protected
 

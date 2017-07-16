@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
+    authorize @comment
   end
 
   private

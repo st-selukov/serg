@@ -39,6 +39,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'listen', '~> 3.1.5'
+gem 'pundit'
 
 # gem 'remotipart'
 # Use Redis adapter to run Action Cable in production
