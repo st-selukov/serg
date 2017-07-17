@@ -8,7 +8,7 @@
       - if answer.best
         span.single-question-answers__current-answer_best_answer
           |Автор отметил ответ, как лучший
-      - elsif user_signed_in? && current_user.author_of?(answer.question)
+      - elsif policy(answer).best_answer?
           span.single-question-answers__current-answer_best_answer
             = link_to best_answer_answer_path(answer), method: :post
               |Лучший ответ

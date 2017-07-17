@@ -23,4 +23,13 @@ class ApplicationController < ActionController::Base
   def find_parent
     @parent = parent_klass.find(params[:id])
   end
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  private
+
+  def user_not_authorized
+    flash[:alert] = "Вы не имеете доступ к данному действию"
+    redirect_to(request.referrer || root_path)
+  end
 end

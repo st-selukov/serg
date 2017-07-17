@@ -30,4 +30,12 @@ RSpec.describe AnswerPolicy do
     it { should_not permit(:update) }
     it { should_not permit(:destroy) }
   end
+
+  context 'best answer' do
+    let(:user) { create(:user, reputation: 25, confirmed_at: Time.now) }
+    let(:user2) { create(:user, reputation: 25, confirmed_at: Time.now) }
+    let(:answer) { create(:answer, question: question, user: user2) }
+
+    it { should permit(:best_answer) }
+  end
 end

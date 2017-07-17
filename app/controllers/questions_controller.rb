@@ -34,14 +34,14 @@ class QuestionsController < ApplicationController
   def edit; end
 
   def update
+    authorize @question
     @question.update(question_params)
     respond_with @question, location: @question
-    authorize @question
   end
 
   def destroy
-    respond_with @question.destroy
     authorize @question
+    respond_with @question.destroy
   end
 
   private

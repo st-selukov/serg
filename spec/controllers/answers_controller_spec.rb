@@ -48,7 +48,7 @@ RSpec.describe AnswersController, type: :controller do
 
       it 'not destroy answer, If user is not the owner answer', js: true do
         expect { delete :destroy, params: { id: answer, format: :js } }
-            .to raise_error(Pundit::NotAuthorizedError)
+            .to_not change(Answer, :count)
       end
     end
   end

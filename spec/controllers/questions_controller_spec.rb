@@ -118,7 +118,7 @@ RSpec.describe QuestionsController, type: :controller do
 
       it 'not destroy question, if user is not the owner question' do
         expect { delete :destroy, params: { id: question } }.
-            to raise_error(Pundit::NotAuthorizedError)
+            to_not change(Question, :count)
       end
     end
   end
