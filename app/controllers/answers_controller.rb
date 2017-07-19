@@ -16,16 +16,19 @@ class AnswersController < ApplicationController
   end
 
   def update
-    @answer.update(answer_params) if current_user.author_of?(@answer)
+    authorize @answer
+    @answer.update(answer_params)
     @question = @answer.question
   end
 
   def destroy
-    respond_with @answer.destroy if current_user.author_of?(@answer)
+    authorize @answer
+    respond_with @answer.destroy
   end
 
   def best_answer
-    @answer.set_best if current_user.author_of?(@answer.question)
+    authorize @answer
+    @answer.set_best
     respond_with @answer, location: @answer.question
   end
 

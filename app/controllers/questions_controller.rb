@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
 
   def index
     respond_with @questions = Question.all
+
   end
 
   def new
@@ -30,16 +31,17 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    @question.update(question_params) if current_user.author_of?(@question)
+    authorize @question
+    @question.update(question_params)
     respond_with @question, location: @question
   end
 
   def destroy
-    respond_with @question.destroy if current_user.author_of?(@question)
+    authorize @question
+    respond_with @question.destroy
   end
 
   private

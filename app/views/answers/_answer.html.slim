@@ -8,7 +8,7 @@
       - if answer.best
         span.single-question-answers__current-answer_best_answer
           |Автор отметил ответ, как лучший
-      - elsif user_signed_in? && current_user.author_of?(answer.question)
+      - elsif policy(answer).best_answer?
           span.single-question-answers__current-answer_best_answer
             = link_to best_answer_answer_path(answer), method: :post
               |Лучший ответ
@@ -33,7 +33,7 @@
           - answer.attachments.each do |a|
             = render 'attachments/show_attachments', a: a, subject: answer
 
-    - if user_signed_in? && current_user.author_of?(answer)
+    - if policy(answer).update?
       =form_for answer, remote: true, html: { class: 'current-answer-edit-form',
                                 id: "update-answer-form-#{answer.id}" } do |f|
         .error-answer-update-messages

@@ -1,6 +1,7 @@
 require "application_responder"
 
 class ApplicationController < ActionController::Base
+  include Pundit
   self.responder = ApplicationResponder
   respond_to :html
 
@@ -8,6 +9,7 @@ class ApplicationController < ActionController::Base
 
   before_action :gon_user, unless: :devise_controller?
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   protected
 
   def gon_user
@@ -20,5 +22,12 @@ class ApplicationController < ActionController::Base
 
   def find_parent
     @parent = parent_klass.find(params[:id])
+  end
+
+  private
+
+  def user_not_authorized
+    flash[:alert] = "Вы не имеете доступ к данному действию"
+    redirect_to(request.referrer || root_path)
   end
 end

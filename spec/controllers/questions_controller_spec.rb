@@ -117,7 +117,8 @@ RSpec.describe QuestionsController, type: :controller do
       before { question.user = user }
 
       it 'not destroy question, if user is not the owner question' do
-        expect { delete :destroy, params: { id: question } }.to_not change(Question, :count)
+        expect { delete :destroy, params: { id: question } }.
+            to_not change(Question, :count)
       end
     end
   end

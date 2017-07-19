@@ -3,7 +3,7 @@ li id="comment-#{comment.id}"
   p.comment-text
     |#{comment.body}
 
-  -if user_signed_in? && current_user.author_of?(comment)
+  -if policy(comment).destroy?
     =link_to comment, class:'delete-comment', data: {comment_id: comment.id},
             method: :delete, remote: true
       | Удалить
