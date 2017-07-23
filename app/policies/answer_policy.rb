@@ -7,6 +7,10 @@ class AnswerPolicy < ApplicationPolicy
     update?
   end
 
+  def create?
+    update?
+  end
+
   def best_answer?
     user.present? && user.author_of?(record.question)
   end
