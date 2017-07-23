@@ -33,3 +33,12 @@ ru:
                 too_short: "Слишком короткий пароль. Минимум 8 символов"
               password_confirmation:
                 confirmation: "Необходимо ввести подтверждение пароля"
+  doorkeeper:
+    applications:
+      buttons:
+        submit: "Создать"
+        destroy: "Удалить"
+    authorizations:
+      buttons:
+        authorize: 'Authorize'
+        deny: 'Deny'

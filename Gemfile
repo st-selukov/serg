@@ -40,6 +40,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'listen', '~> 3.1.5'
 gem 'pundit'
+gem 'doorkeeper'
 
 # gem 'remotipart'
 # Use Redis adapter to run Action Cable in production
@@ -75,6 +76,7 @@ group :test do
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'poltergeist'
   gem 'capybara-email'
+  gem 'json_spec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
