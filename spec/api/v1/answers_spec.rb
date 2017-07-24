@@ -7,14 +7,14 @@ describe 'Answers API' do
   let(:question) { create(:question, user: user) }
 
   def request(options = {})
-    get '/api/v1/answers', params: { format: :json }.merge(options)
+    get  api_v1_question_answers_path(question), params: { format: :json }.merge(options)
   end
 
   describe 'GET /index' do
 
     let!(:answers) { create_list(:answer, 2, question: question, user: user) }
 
-    before { get api_v1_answers_path, params: { format: :json, access_token: access_token.token } }
+    before { get api_v1_question_answers_path(question), params: { format: :json, access_token: access_token.token } }
 
     it_behaves_like 'AuthorizationApi'
 
@@ -44,7 +44,7 @@ describe 'Answers API' do
     let!(:comments) { create_list(:comment, 2, commentable: answer, user: user) }
     let!(:attachments) { create_list(:attachment, 2, attachable: answer) }
 
-    before { get api_v1_answer_path(answer), params: { format: :json, access_token: access_token.token } }
+    before { get api_v1_answer_path(answer.id), params: { format: :json, access_token: access_token.token } }
 
     it_behaves_like 'AuthorizationApi'
 
@@ -92,13 +92,13 @@ describe 'Answers API' do
     context 'valid attributes' do
 
       it 'created and saved in db' do
-        expect { post api_v1_answers_path,  params: { question_id: question.id, answer: attributes_for(:answer),
+        expect { post api_v1_question_answers_path(question),  params: { answer: attributes_for(:answer),
                       format: :json, access_token: access_token.token } }.to change(Answer, :count).by(1)
 
       end
 
       it 'return status created(201)' do
-        post api_v1_answers_path, params: { question_id: question.id, answer: attributes_for(:answer),
+        post api_v1_question_answers_path(question), params: { answer: attributes_for(:answer),
              format: :json, access_token: access_token.token }
         expect(response).to have_http_status :created
       end
@@ -107,12 +107,12 @@ describe 'Answers API' do
     context 'invalid attributes' do
 
       it ' not save on db' do
-        expect { post api_v1_answers_path, params: { question_id: question.id, answer: attributes_for(:invalid_answer),
+        expect { post api_v1_question_answers_path(question), params: {answer: attributes_for(:invalid_answer),
                       format: :json, access_token: access_token.token } }.to_not change(Answer, :count)
       end
 
       it 'return status 422' do
-        post api_v1_answers_path, params: { question_id: question.id, answer: attributes_for(:invalid_answer),
+        post  api_v1_question_answers_path(question), params: { answer: attributes_for(:invalid_answer),
              format: :json, access_token: access_token.token }
         expect(response.status).to eq 422
       end
