@@ -41,6 +41,8 @@ gem 'omniauth-twitter'
 gem 'listen', '~> 3.1.5'
 gem 'pundit'
 gem 'doorkeeper'
+gem 'sidekiq'
+gem 'whenever', require: false
 
 # gem 'remotipart'
 # Use Redis adapter to run Action Cable in production
