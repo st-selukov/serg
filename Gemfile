@@ -43,6 +43,8 @@ gem 'pundit'
 gem 'doorkeeper'
 gem 'sidekiq'
 gem 'whenever', require: false
+gem 'thinking-sphinx'
+gem 'mysql2'
 
 # gem 'remotipart'
 # Use Redis adapter to run Action Cable in production
