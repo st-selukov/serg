@@ -14,6 +14,6 @@ class SearchController < ApplicationController
   end
 
   def load_query
-    @query = params[:search][:query]
+    @query = ThinkingSphinx::Query.escape(params[:search][:query])
   end
 end
