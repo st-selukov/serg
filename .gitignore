@@ -21,3 +21,4 @@ config/database.yml
 .idea
 /public/uploads/
 /config/application.yml
+/config/development.sphinx.conf

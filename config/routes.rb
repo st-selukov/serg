@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   use_doorkeeper
 
+  get 'search', to: 'search#search'
+
   namespace :api do
     namespace :v1 do
       resources :profiles do

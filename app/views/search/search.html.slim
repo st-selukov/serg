@@ -1,0 +1,12 @@
+.section.search-results
+  -if @result
+    - @result.each do |item|
+      .search-result-item
+        -if item.try(:body)
+          h2 = item.try(:title)
+          p = item.body
+        - else
+          h2 =item.try(:email)
+  - else
+    p
+      |Ничего не найдено!
